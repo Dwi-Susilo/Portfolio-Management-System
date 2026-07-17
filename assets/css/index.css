@@ -40,6 +40,11 @@ body {
   padding: 1rem 0;
 }
 
+.navbar-nav {
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
 .nav-link {
   color: var(--text-muted) !important;
   font-weight: 500;
@@ -87,6 +92,10 @@ body {
 #about .container table td,
 .text-desc {
   color: var(--text-muted) !important;
+}
+
+.text-desc {
+  text-align: justify;
 }
 
 #contact .container,
