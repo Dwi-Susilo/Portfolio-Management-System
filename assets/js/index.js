@@ -18,6 +18,7 @@ window.addEventListener("scroll", function () {
 });
 
 const navLinks = document.querySelectorAll(".nav-link");
+const sections = document.querySelectorAll(".section");
 
 navLinks.forEach((navlink) => {
   navlink.addEventListener("click", () => {
@@ -26,5 +27,26 @@ navLinks.forEach((navlink) => {
     if (isActive) isActive.classList.remove("active");
 
     navlink.classList.add("active");
+  });
+});
+
+window.addEventListener("scroll", () => {
+  let currentActive = "";
+
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.clientHeight;
+
+    if (window.scrollY >= sectionTop - 150) {
+      currentActive = section.getAttribute("id");
+    }
+  });
+
+  navLinks.forEach((navlink) => {
+    navlink.classList.remove("active");
+
+    if (navlink.getAttribute("href") === `#${currentActive}`) {
+      navlink.classList.add("active");
+    }
   });
 });

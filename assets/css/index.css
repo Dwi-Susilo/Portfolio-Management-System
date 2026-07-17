@@ -48,6 +48,7 @@ body {
 .nav-link:hover,
 .nav-link.active {
   color: var(--accent-color) !important;
+  /* filter: drop-shadow(0 0 2px #7ef0ff) drop-shadow(0 0 10px #7ef0ff); */
 }
 
 .hero-section {
@@ -64,6 +65,15 @@ body {
   border: 4px solid var(--glass-border);
 }
 
+#education,
+#skills,
+#about {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #about .container table {
   --bs-table-bg: : transparent !important;
 }
@@ -75,6 +85,13 @@ body {
 #about .container table td,
 .text-desc {
   color: var(--text-muted) !important;
+}
+
+#contact .container,
+#education .container,
+#portfolio .container,
+#experience .container {
+  padding-top: 40px;
 }
 
 .btn-primary-custom {
