@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,300..700;1,300..700&family=Cormorant:ital,wght@0,300..700;1,300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --bg-dark: #0f172a;
+  --bg-card: rgba(30, 41, 59, 0.7);
+  --accent-color: #7ef0ff;
+  --text-main: #f8fafc;
+  --text-muted: #94b0b8;
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: var(--bg-dark);
+}
+
+footer,
+header {
+  padding: 15px;
+}
+
+.card {
+  background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.1), transparent);
+}
+
+.card-text,
+.card-title {
+  color: var(--text-main);
+}
+
+input:focus,
+input:hover {
+  filter: drop-shadow(0 0 10px #7ef0ff) drop-shadow(0 0 30px #7ef0ff);
+}
+
+button {
+  background: var(--accent-color) !important;
+  color: var(--bg-dark) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.75px;
+}
+
+footer,
+.card-body,
+.card-text small {
+  color: var(--text-muted) !important;
+}
