@@ -4,6 +4,7 @@
   --bg-dark: #0f172a;
   --bg-card: rgba(30, 41, 59, 0.7);
   --accent-color: #7ef0ff;
+  --accent-color2: #7effee;
   --text-main: #f8fafc;
   --text-muted: #94b0b8;
   --glass-border: rgba(255, 255, 255, 0.1);
@@ -28,6 +29,11 @@ header {
   color: var(--text-main);
 }
 
+.card img {
+  width: 100%;
+  height: auto;
+}
+
 input:focus,
 input:hover {
   filter: drop-shadow(0 0 10px #7ef0ff) drop-shadow(0 0 30px #7ef0ff);
@@ -38,6 +44,13 @@ button {
   color: var(--bg-dark) !important;
   font-weight: 600 !important;
   letter-spacing: 0.75px;
+  transition: 0.5s ease-in-out;
+}
+button:focus,
+button:hover {
+  background: var(--accent-color2) !important;
+  color: var(--bg-dark) !important;
+  filter: drop-shadow(0 0 10px #7ef0ff) drop-shadow(0 0 30px #7ef0ff);
 }
 
 footer,
