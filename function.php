@@ -12,18 +12,23 @@ function abort(int $code) {
 
     $message = $messages[$code] ?? 'Unknown Error';
 
-    require 'error.php';
+    require 'views/error.php';
     exit();
 }
 
-function routes() {
+function routes($method, $path) {
     $routes = [
         'GET' => [
-            'home' => 'index.html',
-            'login' => 'login.html',
-            'register' => 'register.html',
-            'dashboard' => 'dashboard.html'
+            'home' => 'home',
+            'login' => 'login',
+            'register' => 'register',
+            'dashboard' => 'dashboard'
         ]
     ];
-    return $routes;
+    
+    if (!isset($routes[$method][$path]) || !file_exists('views/'. $routes[$method][$path]. '.php')) {
+        abort(404);
+    }
+
+    return 'views/'. $routes[$method][$path]. '.php';
 }
