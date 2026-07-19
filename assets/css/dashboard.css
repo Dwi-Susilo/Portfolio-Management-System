@@ -1,0 +1,234 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,300..700;1,300..700&family=Cormorant:ital,wght@0,300..700;1,300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --bg-dark: #0f172a;
+  --bg-card: rgba(30, 41, 59, 0.7);
+  --accent-color: #38bdf8;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --header-heigth: 3.5rem;
+  --h3-font: 1rem;
+  --normal-font: 0.938rem;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-main) !important;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.img-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: -10;
+}
+
+.pulse {
+  position: relative;
+  top: 10px;
+  display: inline-block;
+  min-height: 70px;
+  width: 100%;
+  border: none;
+  overflow: hidden;
+}
+
+.pulse span {
+  position: absolute;
+  left: -10%;
+  width: 200%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #38bdf8, transparent);
+  /* background: var(--accent-color); */
+  z-index: 1;
+  transform: scaleX(0);
+  /* transform-origin: bottom right; */
+
+  animation: animate 6s ease-in-out infinite;
+}
+
+@keyframes animate {
+  0%,
+  100% {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  50% {
+    transform: scaleX(1);
+    transform-origin: right;
+  }
+}
+
+.main,
+.header {
+  position: fixed;
+  right: 0;
+  left: 255px;
+  z-index: 100;
+}
+
+.header {
+  top: 0;
+  right: 0;
+  margin: 1rem;
+}
+
+.main .container,
+.header .container {
+  width: 100%;
+  height: var(--header-heigth);
+  background-color: hsla(0, 0%, 0%, 0.1);
+  backdrop-filter: blur(16px);
+  border-radius: 1rem;
+  padding-inline: 1rem;
+}
+
+.header .text-title {
+  color: var(--text-main);
+  font-weight: 600;
+  margin-left: 15px;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 250px;
+  background-color: hsla(0, 0%, 0%, 0.2);
+  backdrop-filter: blur(16px);
+  z-index: 100;
+  padding: 1rem 1rem 1.5rem;
+  margin: 1rem;
+  border-radius: 1rem;
+  transition: left 0.4s;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  column-gap: 0.75rem;
+  color: var(--text-main);
+  /* padding: 0 0 1rem 0.5rem; */
+  padding: 0.5rem 1.5rem 1rem;
+  font-weight: 500;
+  border-bottom: 1px solid hsla(0, 0%, 100%, 0.3);
+}
+
+.sidebar-logo i {
+  font-size: 1.5rem;
+}
+
+.sidebar-content {
+  display: grid;
+  row-gap: 0.5rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.sidebar-link {
+  width: 100%;
+  padding: 0.5rem 1.5rem;
+  transition: background-color 0.4s;
+  border-radius: 0.5rem;
+}
+
+.sidebar-link:hover {
+  background-color: var(--accent-color);
+  filter: drop-shadow(0 0 10px #7ef0ff) drop-shadow(0 0 30px #7ef0ff);
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  column-gap: 0.75rem;
+  color: var(--text-main);
+  font-weight: 500;
+  transition: background-color 0.4s;
+}
+
+.link i {
+  font-size: 1.25rem;
+}
+
+.sidebar-link:hover .link {
+  color: var(--bg-dark);
+}
+
+.sidebar form {
+  padding: 0.5rem 0 0 0.5rem;
+  border-top: 1px solid hsla(0, 0%, 100%, 0.3);
+}
+
+.sidebar-logout {
+  width: 100%;
+  padding: 0.5rem 0.5rem;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  border-radius: 0.5rem;
+  column-gap: 0.75rem;
+  color: var(--text-main);
+  font-weight: 500;
+  transition: background-color 0.4s;
+}
+
+.sidebar-logout i {
+  font-size: 1.5rem;
+}
+
+.sidebar form:hover .sidebar-logout {
+  color: red;
+  filter: drop-shadow(0 0 10px #7ef0ff) drop-shadow(0 0 30px #7ef0ff);
+}
+
+.card {
+  background-color: var(--bg-card);
+  backdrop-filter: blur(16px);
+}
+
+.stat-card {
+  cursor: pointer;
+  color: var(--text-main);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.stat-card i {
+  font-size: 2.5rem;
+  color: blue;
+}
+
+.row > div:nth-child(2) .stat-card i {
+  color: #ffc107;
+}
+
+.row > div:nth-child(3) .stat-card i {
+  color: green;
+}
+
+.row > div:nth-child(4) .stat-card i {
+  color: red;
+}
+
+.stat-card small,
+.stat-card p {
+  font-size: 1.75rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.stat-card small {
+  font-size: large;
+}
