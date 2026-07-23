@@ -1,15 +1,13 @@
-<?php 
-require_once 'function.php';
+<?php
+session_start();
 define('APP_RUNNING', true);
 
-$url = trim(parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH), '/');
-$url = $url?: 'home';
+require_once 'db/koneksi.php';
+require_once 'function.php';
 
-$routes = routes($_SERVER['REQUEST_METHOD'], $url);
+$routes = routes();
 
 require_once 'layouts/header.php';
 require $routes;
+clearFlashData();
 require_once 'layouts/footer.php';
-
-
-

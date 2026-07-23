@@ -53,7 +53,7 @@
           </a>
         </div>
       </div>
-      <form action="" method="post">
+      <form action="logout" method="post">
         <button type="submit" name="Logout" class="sidebar-logout"><i class="bi bi-box-arrow-left"></i> Logout</button>
       </form>
     </div>
@@ -102,4 +102,3 @@
       </div>
     </div>
     </main>
-

@@ -15,6 +15,24 @@ body {
   background: var(--bg-dark);
 }
 
+.alert {
+  display: block;
+  position: absolute;
+  top: 5px;
+  right: 0;
+  left: 0;
+  margin: 0 160px;
+  z-index: 10;
+  background: linear-gradient( rgba(56, 189, 248, 0.9), transparent) !important;
+  filter: drop-shadow(0 0 10px #7ef0ff) drop-shadow(0 0 30px #7ef0ff);
+  color: var(--bg-card);
+  font-size: 14px;
+}
+
+.alert.show {
+  display: block;
+}
+
 footer,
 header {
   padding: 15px;
@@ -39,15 +57,16 @@ input:hover {
   filter: drop-shadow(0 0 10px #7ef0ff) drop-shadow(0 0 30px #7ef0ff);
 }
 
-button {
+.card button {
   background: var(--accent-color) !important;
   color: var(--bg-dark) !important;
   font-weight: 600 !important;
   letter-spacing: 0.75px;
   transition: 0.5s ease-in-out;
 }
-button:focus,
-button:hover {
+
+.card button:focus,
+.card button:hover {
   background: var(--accent-color2) !important;
   color: var(--bg-dark) !important;
   filter: drop-shadow(0 0 10px #7ef0ff) drop-shadow(0 0 30px #7ef0ff);

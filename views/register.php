@@ -1,12 +1,12 @@
 <header>
-    <div class="container mt-4">
+  <div class="container mt-4">
     <div class="card">
-        <div class="row">
+      <div class="row">
         <div class="col-md-4 left">
-            <img src="assets/img/register.jpg" alt="login.jpg" class="rounded-start" />
+          <img src="assets/img/register.jpg" alt="login.jpg" class="rounded-start" />
         </div>
         <div class="col-md-8">
-            <div class="card-body">
+          <div class="card-body">
             <div class="text-center mb-4">
                 <h1 class="card-title fw-bold">REGISTER</h1>
                 <p class="card-text">
@@ -15,56 +15,69 @@
                 </p>
             </div>
             <div class="d-flex align-content-center align-items-center justify-content-center">
-                <form action="" method="post" class="">
+              <form action="register" method="post" class="">
                 <div class="row mb-3">
-                    <div class="col">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="username" name="username" required autocomplete="off" />
-                    </div>
-                    <div class="col">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required />
-                    </div>
+                  <div class="col">
+                      <label for="username" class="form-label">Username</label>
+                      <input type="text" class="form-control <?php echo hasFlash('error', 'username') ? 'is-invalid' : '' ?>" id="username" name="username" value="<?php echo getOld('username') ?>" required autocomplete="off" />
+                      <div  class="invalid-feedback">
+                        <?php echo getError('username'); ?>
+                      </div>
+                  </div>
+                  <div class="col">
+                      <label for="email" class="form-label">Email</label>
+                      <input type="email" class="form-control <?php echo hasFlash('error', 'email') ? 'is-invalid' : '' ?>" id="email" name="email" value="<?php echo getOld('email') ?>" required />
+                      <div  class="invalid-feedback">
+                        <?php echo getError('email'); ?>
+                      </div>
+                  </div>
                 </div>
                 <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" required autocomplete="off" />
+                  <label for="password" class="form-label">Password</label>
+                  <input type="password" class="form-control <?php echo hasFlash('error', 'password') ? 'is-invalid' : '' ?>" id="password" name="password" required autocomplete="off" />
+                  <div  class="invalid-feedback">
+                    <?php echo getError('password'); ?>
+                  </div>
                 </div>
                 <div class="mb-3">
-                    <label for="cpassword" class="form-label">Confirm Password</label>
-                    <input type="cpassword" class="form-control" id="cpassword" name="cpassword" required autocomplete="off" />
+                  <label for="cpassword" class="form-label">Confirm Password</label>
+                  <input type="password" class="form-control <?php echo hasFlash('error', 'cpassword') ? 'is-invalid' : '' ?>" id="cpassword" name="cpassword" value="<?php echo getOld('cpassword') ?>" required autocomplete="off" />
+                  <div  class="invalid-feedback">
+                    <?php echo getError('cpassword'); ?>
+                  </div>
                 </div>
                 <div class="mt-4">
-                    <div class="mb-3 text-center">
+                  <div class="mb-3 text-center">
                     <button type="submit" name="register" class="btn w-100">
                         <i class="bi bi-check-circle"></i>
                         Register
                     </button>
-                    </div>
-                    <div class="mb-3 text-center">
+                  </div>
+                  <div class="mb-3 text-center">
                     <a href="/" class="btn btn-dark w-100">
                         <i class="bi bi-arrow-left-square me-2"></i>
                         Back Home
                     </a>
-                    </div>
+                  </div>
                 </div>
-                </form>
+              </form>
             </div>
+
             <p class="card-text text-center">
                 <small class="text-body-secondary">
                 have an account?
                 <a href="login" class="text-decoration-none">Login</a>
                 </small>
             </p>
-            </div>
+          </div>
         </div>
-        </div>
+      </div>
     </div>
-    </div>
+  </div>
 </header>
 
 <footer class="mt-3">
-    <div class="container">
+  <div class="container">
     <p class="text-center">&copy; 2026 Dendy Novianto. Seluruh hak cipta dilindungi.</p>
-    </div>
+  </div>
 </footer>

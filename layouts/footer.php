@@ -1,10 +1,10 @@
     <!-- Bootstrap 5 JS Bundle -->
     <script src="assets/js/bootstrap.js"></script>
     <!-- Custom JS -->
-    <?php if($url === 'dashboard') : ?>
+    <?php if (getPath() === 'dashboard'): ?>
       <script src="assets/js/dashboard.js"></script>
-    <?php else:?>
+    <?php else: ?>
       <script src="assets/js/index.js"></script>
-    <?php endif;?>
+    <?php endif; ?>
   </body>
 </html>
