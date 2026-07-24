@@ -1,3 +1,10 @@
+<?php
+    if (! empty($_SESSION['isLogin'])) {
+    exit(header('Location: /'));
+    }
+
+?>
+
 <header>
   <div class="container mt-4">
     <div class="card">

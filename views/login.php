@@ -1,3 +1,10 @@
+<?php
+    if (! empty($_SESSION['isLogin'])) {
+    exit(header('Location: /'));
+    }
+
+?>
+
 <header>
     <div class="alert alert-dismissible fade  <?php echo hasFlash('alert', 'success') ? 'show' : '' ?>" role="alert">
         <strong>Success</strong> <?php echo getAlert('success'); ?>

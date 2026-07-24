@@ -58,6 +58,22 @@ body {
   /* filter: drop-shadow(0 0 2px #7ef0ff) drop-shadow(0 0 10px #7ef0ff); */
 }
 
+.dropdown-menu {
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.1), transparent);
+  transition: .4s;
+}
+
+.dropdown-menu li:hover {
+  background: var(--accent-color);
+  filter: drop-shadow(0 0 2px #7ef0ff) drop-shadow(0 0 10px #7ef0ff);
+}
+
+.dropdown-menu li:hover .nav-link {
+  color: var(--bg-dark) !important;
+}
+
 .hero-section {
   padding: 160px 0 100px;
   background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.1), transparent);
@@ -67,9 +83,8 @@ body {
   width: 280px;
   height: 280px;
   object-fit: cover;
-  object-position: 0 -80px;
   border-radius: 2rem;
-  border: 4px solid var(--glass-border);
+  /* border: 4px solid var(--glass-border); */
 }
 
 #education,

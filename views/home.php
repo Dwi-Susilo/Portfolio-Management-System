@@ -8,21 +8,41 @@
 </button>
 <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ms-auto text-uppercase">
-    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-    <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
-    <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
-    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+        <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
     </ul>
     <div class="navbar-nav text-uppercase">
-    <div class="nav-item">
-        <a class="nav-link auth" href="login">
-        <i class="bi bi-lock me-2"></i>
-        Admin Login
-        </a>
-    </div>
+        <div class="nav-item">
+            <?php if ($_SESSION['isLogin']): ?>
+                <div class="dropdown ">
+                    <button class="btn dropdown-toggle nav-link text-uppercase" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <?php echo $_SESSION['username'] ?>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class=" nav-link" href="/dashboard">Dashboard</a></li>
+                        <li><a class=" nav-link" href="/profile">Profile</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <form action="logout" method="post" class="">
+                                <button type="submit" name="logout" class=" nav-link text-uppercase" >logout</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+
+            <?php else: ?>
+                <a class="nav-link auth" href="login">
+                    <i class="bi bi-lock me-2"></i>
+                    Admin Login
+                </a>
+
+            <?php endif; ?>
+        </div>
     </div>
 </div>
 </div>
@@ -33,21 +53,18 @@
 <section id="home" class="section hero-section">
 <div class="container">
     <div class="row align-items-center g-5">
-    <div class="col-lg-7">
-        <h5 class="accent-text mb-3">Welcome to my professional profile</h5>
-        <h1 class="display-3 fw-bold mb-3">Dendy Novianto</h1>
-        <h3 class="h4 text-muted text-desc mb-4">Project Controller | FTTH Specialist</h3>
-        <p class="lead text-muted text-desc mb-5">
-        Seorang expert dalam FTTH ataupun FTTX dengan pengalaman lebih dari 10 tahun. Spesialis dalam pengawasan proyek, manajemen teknis lapangan, dan optimasi infrastruktur jaringan telekomunikasi.
-        </p>
-        <div class="d-flex gap-3">
-        <a href="#portfolio" class="btn btn-primary-custom">View Portfolio</a>
-        <a href="#contact" class="btn btn-outline-custom">Contact Me</a>
+        <div class="col-lg-10">
+            <h5 class="accent-text mb-3">Welcome to my professional profile</h5>
+            <h1 class="display-3 fw-bold mb-3">Dendy Novianto</h1>
+            <h3 class="h4 text-muted text-desc mb-4">Project Controller | FTTH Specialist</h3>
+            <p class="lead text-muted text-desc mb-5">
+            Seorang expert dalam FTTH ataupun FTTX dengan pengalaman lebih dari 10 tahun. Spesialis dalam pengawasan proyek, manajemen teknis lapangan, dan optimasi infrastruktur jaringan telekomunikasi.
+            </p>
+            <div class="d-flex gap-3">
+                <a href="#portfolio" class="btn btn-primary-custom">View Portfolio</a>
+                <a href="#contact" class="btn btn-outline-custom">Contact Me</a>
+            </div>
         </div>
-    </div>
-    <div class="col-lg-5 text-center">
-        <img src="assets/img/dendy.jpeg" alt="Dendy Novianto" class="profile-img shadow-lg" />
-    </div>
     </div>
 </div>
 </section>
@@ -59,47 +76,22 @@
 <div class="container">
     <h2 class="section-title text-center">About <span class="accent-text">Me</span></h2>
     <div class="row justify-content-center">
-    <div class="glass-card p-5">
-        <div class="row g-4">
-        <div class="col-md-6">
-            <h4 class="mb-4 accent-text ms-5">Personal Details</h4>
-            <table class="table table-sm table-borderless">
-            <tr>
-                <th>Birth</th>
-                <th>:</th>
-                <td>Jakarta, 02 November 1991</td>
-            </tr>
-            <tr>
-                <th>Religion</th>
-                <th>:</th>
-                <td>Agama Islam</td>
-            </tr>
-            <tr>
-                <th>Ethnicity</th>
-                <th>:</th>
-                <td>Suku Jawa</td>
-            </tr>
-            <tr>
-                <th>Blood Type</th>
-                <th>:</th>
-                <td>Golongan Darah A</td>
-            </tr>
-            <tr>
-                <th>Status</th>
-                <th>:</th>
-                <td>Ayah dengan 2 orang anak</td>
-            </tr>
-            </table>
+        <div class="glass-card p-5">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <img src="assets/img/christopher-campbell.jpg" alt="Dendy Novianto" class="profile-img" />
+                </div>
+                <div class="col-md-8 align-content-center">
+                    <h4 class="accent-text text-center mb-4">Professional Summary</h4>
+                    <p class="text-muted text-desc">
+                    Memiliki rekam jejak yang kuat dalam mengelola siklus hidup proyek FTTH, mulai dari survei lokasi, akuisisi, hingga implementasi dan uji terima. Ahli dalam koordinasi tim lintas fungsi dan manajemen pemangku kepentingan
+                    untuk memastikan target operasional tercapai tepat waktu.
+                    </p>
+                </div>
+
+            </div>
+
         </div>
-        <div class="col-md-6">
-            <h4 class="mb-4 accent-text text-center">Professional Summary</h4>
-            <p class="text-muted text-desc">
-            Memiliki rekam jejak yang kuat dalam mengelola siklus hidup proyek FTTH, mulai dari survei lokasi, akuisisi, hingga implementasi dan uji terima. Ahli dalam koordinasi tim lintas fungsi dan manajemen pemangku kepentingan
-            untuk memastikan target operasional tercapai tepat waktu.
-            </p>
-        </div>
-        </div>
-    </div>
     </div>
 </div>
 </section>
@@ -342,8 +334,7 @@
 
 <!-- Footer -->
 <footer class="py-5">
-<div class="container">
-<p class="text-center text-muted text-desc mb-0">&copy; 2026 Dendy Novianto. Seluruh hak cipta dilindungi.</p>
-</div>
-    </footer>
-
+    <div class="container">
+        <p class="text-center text-muted text-desc mb-0">&copy; 2026 Dendy Novianto. Seluruh hak cipta dilindungi.</p>
+    </div>
+</footer>

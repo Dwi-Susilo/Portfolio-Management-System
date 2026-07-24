@@ -1,4 +1,11 @@
-  <img src="assets/img/dashboard.jpg" alt="img" class="img-bg" />
+<?php
+    if (empty($_SESSION['isLogin'])) {
+    exit(header('Location: /'));
+    }
+
+?>
+
+<img src="assets/img/dashboard.jpg" alt="img" class="img-bg" />
   <div class="pulse"></div>
 
   <!-- HEADER -->
@@ -50,6 +57,12 @@
           <a href="" class="link">
             <i class="bi bi-envelope"></i>
             MESSAGES
+          </a>
+        </div>
+        <div class="sidebar-link">
+          <a href="/" class="link">
+            <i class="bi bi-house"></i>
+            HOME
           </a>
         </div>
       </div>

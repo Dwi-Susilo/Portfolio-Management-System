@@ -222,10 +222,14 @@ function logout()
 {
     global $conn;
 
-    if (isset($_SESSION['user_id'])) {
-        $userId = $_SESSION['user_id'];
+    if (! file_exists('model/users.php')) {
+        abort(500);
+    }
 
-        logoutUser($conn, $userId);
+    require_once 'model/users.php';
+
+    if (! empty($_SESSION['user_id'])) {
+        logOutUser($conn, $_SESSION['user_id']);
     }
 
     $_SESSION = [];

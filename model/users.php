@@ -91,7 +91,7 @@ function loginUser($conn, $username, $password, $remember = false)
 
 }
 
-function logoutUser($conn, $id)
+function logOutUser($conn, $id)
 {
     $stmt = $conn->prepare("UPDATE users SET last_logout = NOW() WHERE id = ?");
     $stmt->bind_param("i", $id);
