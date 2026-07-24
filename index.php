@@ -1,9 +1,10 @@
 <?php
 session_start();
+define('APP_ENV', 'development');
 define('APP_RUNNING', true);
 
-require_once 'db/koneksi.php';
 require_once 'function.php';
+require_once 'db/koneksi.php';
 
 $routes = routes();
 

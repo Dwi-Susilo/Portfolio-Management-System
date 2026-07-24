@@ -66,6 +66,11 @@ function loginUser($conn, $username, $password, $remember = false)
 
     if ($user) {
         if (password_verify($password, $user['password'])) {
+            $stmt = $conn->prepare("UPDATE users SET last_login = NOW() WHERE id = ?");
+            $stmt->bind_param("i", $user['id']);
+            $stmt->execute();
+            $stmt->close();
+
             $_SESSION['isLogin']  = true;
             $_SESSION['user_id']  = $user['id'];
             $_SESSION['username'] = $user['username'];
@@ -83,5 +88,14 @@ function loginUser($conn, $username, $password, $remember = false)
             exit();
         }
     }
+
+}
+
+function logoutUser($conn, $id)
+{
+    $stmt = $conn->prepare("UPDATE users SET last_logout = NOW() WHERE id = ?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $stmt->close();
 
 }

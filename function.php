@@ -1,7 +1,7 @@
 <?php
 defined('APP_RUNNING') || abort(403);
 
-function abort(int $code)
+function abort($code = 500, $debugMessage = '')
 {
     http_response_code($code);
 
@@ -11,6 +11,8 @@ function abort(int $code)
         404 => 'Page Not Found',
         500 => 'Internal Server Error',
     ];
+
+    $debug = (APP_ENV === 'development') ? $debugMessage : null;
 
     $message = $messages[$code] ?? 'Unknown Error';
 
@@ -218,27 +220,17 @@ function login()
 
 function logout()
 {
+    global $conn;
+
+    if (isset($_SESSION['user_id'])) {
+        $userId = $_SESSION['user_id'];
+
+        logoutUser($conn, $userId);
+    }
+
     $_SESSION = [];
 
-    if (ini_get("session.use_cookies")) {
-        $params = session_get_cookie_params();
-        setcookie(
-            session_name(),
-            '',
-            time() - 42000,
-            $params["path"],
-            $params["domain"],
-            $params["secure"],
-            $params["httponly"]
-        );
-    }
-
-    if (isset($_COOKIE['remember_user'])) {
-        setcookie('remember_user', '', time() - 3600, '/');
-    }
-
     session_destroy();
-
     header('Location: /');
     exit();
 }
