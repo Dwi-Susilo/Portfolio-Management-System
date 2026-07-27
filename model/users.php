@@ -31,16 +31,13 @@ function addUser($conn, $username, $email, $password)
 
     if (mysqli_stmt_execute($stmt)) {
         $_SESSION['alert']['success'] = 'Registrasi telah berhasil.';
-
-        mysqli_stmt_close($stmt);
-        header('Location: /login');
-        exit;
     } else {
         $_SESSION['alert']['danger'] = 'Terjadi kesalahan, registrasi telah gagal.';
-
-        mysqli_stmt_close($stmt);
-        return;
     }
+
+    mysqli_stmt_close($stmt);
+    header('Location: /login');
+    exit;
 
 }
 
@@ -64,38 +61,49 @@ function loginUser($conn, $username, $password, $remember = false)
 
     $user = mysqli_fetch_assoc($result);
 
-    if ($user) {
-        if (password_verify($password, $user['password'])) {
-            $stmt = $conn->prepare("UPDATE users SET last_login = NOW() WHERE id = ?");
-            $stmt->bind_param("i", $user['id']);
-            $stmt->execute();
-            $stmt->close();
+    if ($user && password_verify($password, $user['password'])) {
+        $stmt = mysqli_prepare($conn, "UPDATE users SET last_login = NOW() WHERE id = ?");
+        mysqli_stmt_bind_param($stmt, "i", $user['id']);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
 
-            $_SESSION['isLogin']  = true;
-            $_SESSION['user_id']  = $user['id'];
-            $_SESSION['username'] = $user['username'];
+        session_regenerate_id(true);
 
-            if ($remember) {
-                setcookie('remember_user', $user['username'], time() + (86400 * 7), '/');
-            }
+        $_SESSION['isLogin']  = true;
+        $_SESSION['user_id']  = $user['id'];
+        $_SESSION['username'] = $user['username'];
 
-            header('Location: /dashboard');
-            exit();
-        } else {
-            $_SESSION['error']['password'] = 'Password salah.';
+        if ($remember) {
+            $token = bin2hex(random_bytes(32));
 
-            header('Location: /login');
-            exit();
+            $stmt = mysqli_prepare($conn, "UPDATE users SET remember_token = ? WHERE id = ?");
+            mysqli_stmt_bind_param($stmt, "si", $token, $user['id']);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
+
+            setcookie('remember_user', $user['id'] . ':' . $token, time() + (86400 * 7), '/', '', true, true);
         }
+
+        header('Location: /dashboard');
+        exit();
     }
+
+    $_SESSION['error']['username'] = 'Username atau password salah.';
+
+    header('Location: /login');
+    exit();
 
 }
 
 function logOutUser($conn, $id)
 {
-    $stmt = $conn->prepare("UPDATE users SET last_logout = NOW() WHERE id = ?");
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $stmt->close();
+    $stmt = mysqli_prepare($conn, "UPDATE users SET last_logout = NOW() WHERE id = ?");
+    mysqli_stmt_bind_param($stmt, "i", $id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    if (isset($_COOKIE['remember_user'])) {
+        setcookie('remember_user', '', time() - 3600, '/');
+    }
 
 }

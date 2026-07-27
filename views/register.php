@@ -21,21 +21,22 @@
                 it's free!
                 </p>
             </div>
-            <div class="d-flex align-content-center align-items-center justify-content-center">
+            <div class="d-flex align-content-center align-items-center justify-content-center px-5">
               <form action="register" method="post" class="">
+                <?php echo csrfField(); ?>
                 <div class="row mb-3">
                   <div class="col">
                       <label for="username" class="form-label">Username</label>
-                      <input type="text" class="form-control <?php echo hasFlash('error', 'username') ? 'is-invalid' : '' ?>" id="username" name="username" value="<?php echo getOld('username') ?>" required autocomplete="off" />
+                      <input type="text" class="form-control <?php echo hasFlash('error', 'username') ? 'is-invalid' : '' ?>" id="username" name="username" value="<?php echo e(getOld('username')) ?>" required autocomplete="off" />
                       <div  class="invalid-feedback">
-                        <?php echo getError('username'); ?>
+                        <?php echo e(getError('username')); ?>
                       </div>
                   </div>
                   <div class="col">
                       <label for="email" class="form-label">Email</label>
-                      <input type="email" class="form-control <?php echo hasFlash('error', 'email') ? 'is-invalid' : '' ?>" id="email" name="email" value="<?php echo getOld('email') ?>" required />
+                      <input type="email" class="form-control <?php echo hasFlash('error', 'email') ? 'is-invalid' : '' ?>" id="email" name="email" value="<?php echo e(getOld('email')) ?>" required />
                       <div  class="invalid-feedback">
-                        <?php echo getError('email'); ?>
+                        <?php echo e(getError('email')); ?>
                       </div>
                   </div>
                 </div>
@@ -43,14 +44,14 @@
                   <label for="password" class="form-label">Password</label>
                   <input type="password" class="form-control <?php echo hasFlash('error', 'password') ? 'is-invalid' : '' ?>" id="password" name="password" required autocomplete="off" />
                   <div  class="invalid-feedback">
-                    <?php echo getError('password'); ?>
+                    <?php echo e(getError('password')); ?>
                   </div>
                 </div>
                 <div class="mb-3">
                   <label for="cpassword" class="form-label">Confirm Password</label>
-                  <input type="password" class="form-control <?php echo hasFlash('error', 'cpassword') ? 'is-invalid' : '' ?>" id="cpassword" name="cpassword" value="<?php echo getOld('cpassword') ?>" required autocomplete="off" />
+                  <input type="password" class="form-control <?php echo hasFlash('error', 'cpassword') ? 'is-invalid' : '' ?>" id="cpassword" name="cpassword" value="<?php echo e(getOld('cpassword')) ?>" required autocomplete="off" />
                   <div  class="invalid-feedback">
-                    <?php echo getError('cpassword'); ?>
+                    <?php echo e(getError('cpassword')); ?>
                   </div>
                 </div>
                 <div class="mt-4">

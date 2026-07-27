@@ -7,7 +7,7 @@
 
 <header>
     <div class="alert alert-dismissible fade  <?php echo hasFlash('alert', 'success') ? 'show' : '' ?>" role="alert">
-        <strong>Success</strong> <?php echo getAlert('success'); ?>
+        <strong>Success</strong> <?php echo e(getAlert('success')); ?>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     <div class="container p-5">
@@ -27,18 +27,19 @@
                     </div>
                     <div class="d-flex align-content-center align-items-center justify-content-center">
                         <form action="login" method="post" class="w-75">
+                        <?php echo csrfField(); ?>
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control <?php echo hasFlash('error', 'username') ? 'is-invalid' : '' ?>" id="username" name="username" value="<?php echo getOld('username') ?>" required autocomplete="off" />
+                            <input type="text" class="form-control <?php echo hasFlash('error', 'username') ? 'is-invalid' : '' ?>" id="username" name="username" value="<?php echo e(getOld('username')) ?>" required autocomplete="off" />
                             <div  class="invalid-feedback">
-                                <?php echo getError('username'); ?>
+                                <?php echo e(getError('username')); ?>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
                             <input type="password" class="form-control <?php echo hasFlash('error', 'password') ? 'is-invalid' : '' ?>" id="password" name="password"  required autocomplete="off" />
                             <div  class="invalid-feedback">
-                                <?php echo getError('password'); ?>
+                                <?php echo e(getError('password')); ?>
                             </div>
                         </div>
                         <div class="mb-3 row">
