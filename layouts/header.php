@@ -13,9 +13,24 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
     <!-- Style -->
     <?php if (strpos(getPath(), 'dashboard') === 0): ?>
-      <link rel="stylesheet" href="<?php echo BASE_URL ?>/assets/css/dashboard.css" />
+        <link rel="stylesheet" href="<?php echo BASE_URL ?>/assets/css/dashboard.css" />
+      </head>
+      <body>
+
+      <?php
+          if (empty($_SESSION['isLogin'])) {
+              exit(header('Location: /'));
+          }
+      ?>
+
+      <img src="<?php echo BASE_URL ?>/assets/img/dashboard.jpg" alt="img" class="img-bg" />
+      <div class="pulse"></div>
+
+      <!-- SIDEBAR -->
+      <?php require_once 'layouts/sidebar.php'; ?>
+
     <?php else: ?>
-      <link rel="stylesheet" href="assets/css/<?php echo empty(getPath()) ? "index" : getPath(); ?>.css" />
+        <link rel="stylesheet" href="assets/css/<?php echo empty(getPath()) ? "index" : getPath(); ?>.css" />
+      </head>
+      <body data-bs-spy="scroll" data-bs-target="#navbarNav">
     <?php endif; ?>
-  </head>
-  <body data-bs-spy="scroll" data-bs-target="#navbarNav">

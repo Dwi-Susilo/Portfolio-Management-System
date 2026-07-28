@@ -26,6 +26,17 @@ function getPath()
 
 }
 
+function methodPath()
+{
+    $path = explode('/', getPath());
+
+    if (! isset($path[1])) {
+        return $path = $path[0];
+    }
+
+    return $path = $path[1];
+}
+
 function method()
 {
     return strtolower($_SERVER['REQUEST_METHOD']);
