@@ -26,7 +26,6 @@
       <img src="<?php echo BASE_URL ?>/assets/img/dashboard.jpg" alt="img" class="img-bg" />
       <div class="pulse"></div>
 
-      <!-- SIDEBAR -->
       <?php require_once 'layouts/sidebar.php'; ?>
 
     <?php else: ?>

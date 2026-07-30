@@ -1,3 +1,8 @@
+<?php
+    if (! file_exists('model/portfolios.php')) {
+    abort(500);
+    }
+?>
 <main class="main">
     <div class="box-container">
     <div class="d-flex justify-content-between align-items-center mb-3">

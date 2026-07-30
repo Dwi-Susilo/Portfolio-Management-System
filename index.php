@@ -3,7 +3,10 @@ session_start();
 
 define('APP_ENV', 'development');
 define('APP_RUNNING', true);
-define('BASE_URL', '');
+define('ROOT_DIR', dirname(__DIR__));
+
+$scheme = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
+define('BASE_URL', $scheme . '://' . $_SERVER['HTTP_HOST']);
 
 require_once 'response.php';
 require_once 'request.php';
