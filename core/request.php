@@ -10,18 +10,6 @@ function getPath()
         $path = substr($path, 0, $posisi);
     }
 
-    $path = trim($path, '/') ?: 'home';
-
-    $path = urldecode($path);
-
-    if (! preg_match('#^[a-zA-Z0-9_\-]+(/[a-zA-Z0-9_\-]+)*$#', $path)) {
-        abort(404);
-    }
-
-    if (strpos($path, '..') !== false) {
-        abort(404);
-    }
-
     return $path;
 
 }
@@ -52,23 +40,23 @@ function isPost()
     return method() === 'post';
 }
 
-function formHandling($path)
-{
-    switch ($path) {
-        case 'register':
-            register();
-            return true;
+// function formHandling($path)
+// {
+//     switch ($path) {
+//         case 'register':
+//             register();
+//             return true;
 
-        case 'login':
-            login();
-            return true;
+//         case 'login':
+//             login();
+//             return true;
 
-        case 'logout':
-            logout();
-            return true;
+//         case 'logout':
+//             logout();
+//             return true;
 
-        default:
-            return false;
-    }
+//         default:
+//             return false;
+//     }
 
-}
+// }

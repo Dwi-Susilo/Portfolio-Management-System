@@ -1,5 +1,4 @@
 <?php
-require_once __DIR__ . '/../function.php';
 
 $host     = '127.0.0.1';
 $dbname   = 'db_latihan';

@@ -1,9 +1,20 @@
 <?php
 defined('APP_RUNNING') || abort(403);
 
-function abort($code = 500, $debugMessage = '')
+function setStatusCode($code)
 {
     http_response_code($code);
+}
+
+function redirect($url)
+{
+    header("Location: $url");
+    exit();
+}
+
+function abort($code = 500, $debugMessage = '')
+{
+    setStatusCode($code);
 
     $messages = [
         401 => 'Unauthorized',
@@ -16,7 +27,7 @@ function abort($code = 500, $debugMessage = '')
 
     $message = $messages[$code] ?? 'Unknown Error';
 
-    require 'views/error.php';
+    require_once ROOT_DIR . '/views/error.php';
     exit();
 }
 
