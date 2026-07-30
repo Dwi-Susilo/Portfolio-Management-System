@@ -66,5 +66,12 @@ get('/register', [ROOT_DIR . '/controllers/authController.php', 'register']);
 post('/register', [ROOT_DIR . '/controllers/authController.php', 'HandleRegister']);
 
 get('/dashboard', [ROOT_DIR . '/controllers/authController.php', 'dashboard']);
+get('/profile', [ROOT_DIR . '/controllers/authController.php', 'profile']);
+get('/education', [ROOT_DIR . '/controllers/authController.php', 'education']);
+get('/skills', [ROOT_DIR . '/controllers/authController.php', 'skills']);
+get('/experience', [ROOT_DIR . '/controllers/authController.php', 'experience']);
+get('/portoflio', [ROOT_DIR . '/controllers/authController.php', 'portfolio']);
+get('/messages', [ROOT_DIR . '/controllers/authController.php', 'messages']);
+get('/users', [ROOT_DIR . '/controllers/authController.php', 'users']);
 
 post('/logout', [ROOT_DIR . '/core/controller.php', 'logout']);

@@ -7,6 +7,48 @@ function dashboard()
     return renderView('dashboard/index');
 }
 
+function portfolio()
+{
+    setLayout('dashboard');
+    return renderView('dashboard/portfolio');
+}
+
+function experience()
+{
+    setLayout('dashboard');
+    return renderView('dashboard/experience');
+}
+
+function education()
+{
+    setLayout('dashboard');
+    return renderView('dashboard/education');
+}
+
+function skills()
+{
+    setLayout('dashboard');
+    return renderView('dashboard/skills');
+}
+
+function messages()
+{
+    setLayout('dashboard');
+    return renderView('dashboard/messages');
+}
+
+function profile()
+{
+    setLayout('dashboard');
+    return renderView('dashboard/profile');
+}
+
+function users()
+{
+    setLayout('dashboard');
+    return renderView('dashboard/users');
+}
+
 function login()
 {
     setLayout('auth');

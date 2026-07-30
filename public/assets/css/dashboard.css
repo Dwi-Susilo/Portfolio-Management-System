@@ -166,12 +166,12 @@ body {
   align-items: center;
   column-gap: 0.75rem;
   color: var(--text-main);
-  font-weight: 500;
+  font-weight: 400;
   transition: background-color 0.4s;
 }
 
 .link i {
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 .sidebar-link:hover .link {

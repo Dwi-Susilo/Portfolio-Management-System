@@ -23,58 +23,70 @@
     <!-- SIDEBAR -->
     <nav class="sidebar" id="sidebar">
         <div class="container">
-        <div class="sidebar-logo">
-            <i class="bi bi-robot"></i>
-            <?php echo htmlspecialchars($_SESSION['username']) ?>
-        </div>
-        <div class="sidebar-content">
-            <div class="sidebar-link">
-            <a href="/dashboard" class="link">
-                <i class="bi bi-speedometer2"></i>
-                Dashboard
-            </a>
+            <div class="sidebar-logo">
+                <i class="bi bi-robot"></i>
+                <?php echo htmlspecialchars($_SESSION['username']) ?>
             </div>
-            <div class="sidebar-link">
-            <a href="/profile" class="link">
-                <i class="bi bi-person-square"></i>
-                Profile
-            </a>
+            <div class="sidebar-content">
+                <div class="sidebar-link">
+                    <a href="/dashboard" class="link">
+                        <i class="bi bi-speedometer2"></i>
+                        Dashboard
+                    </a>
+                </div>
+                <div class="sidebar-link">
+                    <a href="/profile" class="link">
+                        <i class="bi bi-person-vcard"></i>
+                        Profile
+                    </a>
+                </div>
+                <div class="sidebar-link">
+                    <a href="/education" class="link">
+                        <i class="bi bi-mortarboard"></i>
+                        Education
+                    </a>
+                </div>
+                <div class="sidebar-link">
+                    <a href="/skills" class="link">
+                        <i class="bi bi-kanban"></i>
+                        Skills
+                    </a>
+                </div>
+                <div class="sidebar-link">
+                    <a href="/experience" class="link">
+                        <i class="bi bi-briefcase"></i>
+                        Experience
+                    </a>
+                </div>
+                <div class="sidebar-link">
+                    <a href="/portfolio" class="link">
+                        <i class="bi bi-grid-3x3-gap"></i>
+                        Portfolio
+                    </a>
+                </div>
+                <div class="sidebar-link">
+                    <a href="/messages" class="link">
+                        <i class="bi bi-envelope"></i>
+                        Messages
+                    </a>
+                </div>
+                <div class="sidebar-link">
+                    <a href="/users" class="link">
+                        <i class="bi bi-person-gear"></i>
+                        Users
+                    </a>
+                </div>
+                <div class="sidebar-link">
+                    <a href="/" class="link">
+                        <i class="bi bi-house"></i>
+                        Back Home
+                    </a>
+                </div>
             </div>
-            <div class="sidebar-link">
-            <a href="/education" class="link">
-                <i class="bi bi-bookmark-star"></i>
-                Education
-            </a>
-            </div>
-            <div class="sidebar-link">
-            <a href="/portfolio" class="link">
-                <i class="bi bi-briefcase"></i>
-                Portfolio
-            </a>
-            </div>
-            <div class="sidebar-link">
-            <a href="/messages" class="link">
-                <i class="bi bi-envelope"></i>
-                Messages
-            </a>
-            </div>
-            <div class="sidebar-link">
-            <a href="/settings" class="link">
-                <i class="bi bi-gear"></i>
-                Settings
-            </a>
-            </div>
-            <div class="sidebar-link">
-            <a href="/" class="link">
-                <i class="bi bi-house"></i>
-                Back Home
-            </a>
-            </div>
-        </div>
-        <form action="logout" method="post">
-            <?php echo csrfField(); ?>
-            <button type="submit" name="Logout" class="sidebar-logout"><i class="bi bi-box-arrow-left"></i> Logout</button>
-        </form>
+            <form action="logout" method="post">
+                <?php echo csrfField(); ?>
+                <button type="submit" name="Logout" class="sidebar-logout"><i class="bi bi-box-arrow-left"></i> Logout</button>
+            </form>
         </div>
     </nav>
     <div class="sidebar-box"></div>
