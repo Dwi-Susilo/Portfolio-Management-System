@@ -33,18 +33,15 @@ function getCallback()
 
 function resolve()
 {
-    // global $routes;
-
     $path   = getPath();
     $method = method();
 
     setCallback(method(), getPath());
 
-    // $callback = $routes[$method][$path] ?? false;
     $callback = getCallback();
 
     if ($callback === false) {
-        abort(404);
+        abort(404, '$callback = ' . $callback . ' - tidak ditemukan!');
     }
 
     if (is_string($callback)) {

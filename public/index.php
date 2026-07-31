@@ -9,6 +9,7 @@ $scheme = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'ht
 define('BASE_URL', $scheme . '://' . $_SERVER['HTTP_HOST']);
 
 require_once ROOT_DIR . '/db/koneksi.php';
+
 require_once ROOT_DIR . '/core/response.php';
 require_once ROOT_DIR . '/core/request.php';
 require_once ROOT_DIR . '/core/view.php';

@@ -1,13 +1,23 @@
 <?php
 
-$host     = '127.0.0.1';
-$dbname   = 'db_latihan';
-$user     = 'root';
-$password = '';
+function db()
+{
+    $host     = '127.0.0.1';
+    $dbname   = 'db_latihan';
+    $user     = 'root';
+    $password = '';
 
-try {
-    $conn = new mysqli($host, $user, $password, $dbname);
-} catch (mysqli_sql_exception $e) {
-    $errorMessage = (APP_ENV === 'development') ? $e->getMessage() : null;
-    abort(500, $errorMessage);
+    static $conn = null;
+
+    if ($conn === null) {
+        try {
+            $conn = new mysqli($host, $user, $password, $dbname);
+        } catch (mysqli_sql_exception $e) {
+            $errorMessage = (APP_ENV === 'development') ? $e->getMessage() : null;
+            abort(500, $errorMessage);
+        }
+    }
+
+    return $conn;
+
 }

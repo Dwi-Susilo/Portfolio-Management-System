@@ -1,13 +1,9 @@
 <?php
 defined('APP_RUNNING') || exit(header('Location: /'));
 
-function getAllPortfolio($conn)
+function getAllPortfolio()
 {
-    if (! $conn) {
-        return [];
-    }
-
-    $stmt = mysqli_prepare($conn, "SELECT id, title, description, image, created_at FROM  portfolios ORDER BY created_at DESC");
+    $stmt = mysqli_prepare(db(), "SELECT id, title, description, image, created_at FROM  portfolios ORDER BY created_at DESC");
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
 
@@ -19,13 +15,9 @@ function getAllPortfolio($conn)
 
 }
 
-function getPortfolioById($conn, $id)
+function getPortfolioById($id)
 {
-    if (! $conn) {
-        return [];
-    }
-
-    $stmt = mysqli_prepare($conn, "SELECT id, title, description, image FROM portfolios WHERE id = ?");
+    $stmt = mysqli_prepare(db(), "SELECT id, title, description, image FROM portfolios WHERE id = ?");
     mysqli_stmt_bind_param($stmt, "i", $id);
     mysqli_stmt_execute($stmt);
 

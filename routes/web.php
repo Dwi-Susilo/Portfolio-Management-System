@@ -9,7 +9,7 @@ post('/', [ROOT_DIR . '/controllers/siteController.php', 'contact']);
 get('/login', [ROOT_DIR . '/controllers/authController.php', 'login']);
 post('/login', [ROOT_DIR . '/controllers/authController.php', 'handleLogin']);
 get('/register', [ROOT_DIR . '/controllers/authController.php', 'register']);
-post('/register', [ROOT_DIR . '/controllers/authController.php', 'HandleRegister']);
+post('/register', [ROOT_DIR . '/controllers/authController.php', 'handleRegister']);
 post('/logout', [ROOT_DIR . '/core/controller.php', 'logout']);
 
 // Dashboard Routes

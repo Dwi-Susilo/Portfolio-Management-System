@@ -1,38 +1,25 @@
 <?php
 defined('APP_RUNNING') || abort(403);
+require_once ROOT_DIR . '/model/portfolios.php';
 
 function portfolio()
 {
-    global $conn;
-
-    if (! file_exists(ROOT_DIR . "/model/portfolios.php")) {
-        abort(500);
-    }
-
-    require_once ROOT_DIR . '/model/portfolios.php';
 
     setLayout('dashboard');
     return renderView('dashboard/portfolio/index', [
-        'portfolios' => getAllPortfolio($conn),
+        'portfolios' => getAllPortfolio(),
     ]);
 }
 
 function create()
 {
-
+    setLayout('dashboard');
     return renderView('dashboard/portfolio/create');
 }
 
 function edit()
 {
-    global $conn;
     setLayout('dashboard');
-
-    if (! file_exists(ROOT_DIR . "/model/portfolios.php")) {
-        abort(500);
-    }
-
-    require_once ROOT_DIR . '/model/portfolios.php';
 
     $rawId = query('id', '');
 
@@ -42,7 +29,7 @@ function edit()
         redirect('/dashboard/portfolio');
     }
 
-    $portfolio = getPortfolioById($conn, $id);
+    $portfolio = getPortfolioById($id);
 
     if (! $portfolio) {
         abort(404);

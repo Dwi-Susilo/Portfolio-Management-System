@@ -1,5 +1,6 @@
 <?php
 defined('APP_RUNNING') || abort(403);
+require_once ROOT_DIR . '/model/users.php';
 
 function login()
 {
@@ -15,15 +16,7 @@ function register()
 
 function handleLogin()
 {
-    global $conn;
-
     verifyCsrf();
-
-    if (! file_exists(ROOT_DIR . '/model/users.php')) {
-        abort(500);
-    }
-
-    require_once ROOT_DIR . '/model/users.php';
 
     $username = trim($_POST['username'] ?? '');
     $password = $_POST['password'] ?? '';
@@ -37,7 +30,7 @@ function handleLogin()
         $_SESSION['error']['username'] = "Username tidak boleh kosong!";
     } elseif (strlen($username) > 24) {
         $_SESSION['error']['username'] = "Maximal 24 karakter!";
-    } elseif (! cekUser($conn, 'username', $username)) {
+    } elseif (! cekUser('username', $username)) {
         $_SESSION['error']['username'] = 'Username atau password salah.';
     }
 
@@ -50,19 +43,12 @@ function handleLogin()
         exit();
     }
 
-    loginUser($conn, $username, $password, $remember);
+    loginUser($username, $password, $remember);
 }
 
 function handleRegister()
 {
-    global $conn;
     verifyCsrf();
-
-    if (! file_exists('model/users.php')) {
-        abort(500);
-    }
-
-    require_once 'model/users.php';
 
     $username  = trim($_POST['username'] ?? '');
     $email     = trim($_POST['email'] ?? '');
@@ -77,7 +63,7 @@ function handleRegister()
         $_SESSION['error']['username'] = "Username tidak boleh kosong!";
     } elseif (strlen($username) > 24) {
         $_SESSION['error']['username'] = "Maximal 24 karakter!";
-    } elseif (cekUser($conn, 'username', $username)) {
+    } elseif (cekUser('username', $username)) {
         $_SESSION['error']['username'] = 'Username sudah digunakan.';
     }
 
@@ -85,7 +71,7 @@ function handleRegister()
         $_SESSION['error']['email'] = "Email tidak boleh kosong!";
     } elseif (! filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $_SESSION['error']['email'] = "Email tidak valid!";
-    } elseif (cekUser($conn, 'email', $email)) {
+    } elseif (cekUser('email', $email)) {
         $_SESSION['error']['email'] = 'Email sudah digunakan..';
     }
 
@@ -102,5 +88,20 @@ function handleRegister()
         exit();
     }
 
-    addUser($conn, $username, $email, $password);
+    addUser($username, $email, $password);
+}
+
+function logout()
+{
+    verifyCsrf();
+
+    if (! empty($_SESSION['user_id'])) {
+        logOutUser($_SESSION['user_id']);
+    }
+
+    $_SESSION = [];
+
+    session_destroy();
+    header('Location: /');
+    exit();
 }
