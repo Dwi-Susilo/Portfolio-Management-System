@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="<?php echo BASE_URL ?>/assets/css/dashboard.css" />
 </head>
 <body>
-    <?php isGuest() ?? exit(header('Location: /')); ?>
+    <?php if (isGuest()): redirect('/');endif; ?>
 
     <img src="<?php echo BASE_URL ?>/assets/img/dashboard.jpg" alt="img" class="img-bg" />
     <div class="pulse"></div>
@@ -59,7 +59,7 @@
                     </a>
                 </div>
                 <div class="sidebar-link">
-                    <a href="/portfolio" class="link">
+                    <a href="/dashboard/portfolio" class="link">
                         <i class="bi bi-grid-3x3-gap"></i>
                         Portfolio
                     </a>

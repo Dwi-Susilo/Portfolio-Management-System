@@ -40,23 +40,39 @@ function isPost()
     return method() === 'post';
 }
 
-// function formHandling($path)
-// {
-//     switch ($path) {
-//         case 'register':
-//             register();
-//             return true;
+function query($key, $default = null)
+{
+    return $_GET[$key] ?? $default;
+}
 
-//         case 'login':
-//             login();
-//             return true;
+function encodeId($id)
+{
+    if (! is_numeric($id) || $id <= 0) {
+        return '';
+    }
 
-//         case 'logout':
-//             logout();
-//             return true;
+    $salt     = 849201;
+    $obscured = ($id * 15823) + $salt;
 
-//         default:
-//             return false;
-//     }
+    return str_replace(['+', '/', '='], ['-', '_', ''], base64_encode((string) $obscured));
 
-// }
+}
+
+function decodeId($code)
+{
+    if (empty($code)) {
+        return 0;
+    }
+
+    $code    = str_replace(['-', '_'], ['+', '/'], $code);
+    $decoded = base64_decode($code);
+
+    if (! is_numeric($decoded)) {
+        return 0;
+    }
+
+    $salt = 849201;
+    $id   = ((int) $decoded - $salt) / 15823;
+
+    return (is_int($id) && $id > 0) ? $id : 0;
+}

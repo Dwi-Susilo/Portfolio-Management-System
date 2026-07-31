@@ -9,8 +9,54 @@ function dashboard()
 
 function portfolio()
 {
+    global $conn;
     setLayout('dashboard');
-    return renderView('dashboard/portfolio');
+
+    if (! file_exists(ROOT_DIR . "/model/portfolios.php")) {
+        abort(500);
+    }
+
+    require_once ROOT_DIR . '/model/portfolios.php';
+
+    return renderView('dashboard/portfolio/index', [
+        'portfolios' => getAllPortfolio($conn),
+    ]);
+}
+
+function createPortfolio()
+{
+
+    return renderView('dashboard/portfolio/create');
+}
+
+function editPortfolio()
+{
+    global $conn;
+    setLayout('dashboard');
+
+    if (! file_exists(ROOT_DIR . "/model/portfolios.php")) {
+        abort(500);
+    }
+
+    require_once ROOT_DIR . '/model/portfolios.php';
+
+    $rawId = query('id', '');
+
+    $id = decodeId($rawId);
+
+    if ($id === 0) {
+        redirect('/dashboard/portfolio');
+    }
+
+    $portfolio = getPortfolioById($conn, $id);
+
+    if (! $portfolio) {
+        abort(404);
+    }
+
+    return renderView('dashboard/portfolio/edit', [
+        'portfolio' => $portfolio,
+    ]);
 }
 
 function experience()
