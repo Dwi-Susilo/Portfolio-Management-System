@@ -27,7 +27,11 @@ function abort($code = 500, $debugMessage = '')
 
     $message = $messages[$code] ?? 'Unknown Error';
 
-    require_once ROOT_DIR . '/views/error.php';
+    echo renderView('_error', [
+        'debug'   => $debug,
+        'message' => $message,
+        'code'    => $code,
+    ]);
     exit();
 }
 

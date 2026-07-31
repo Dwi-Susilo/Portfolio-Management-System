@@ -35,25 +35,25 @@
                     </a>
                 </div>
                 <div class="sidebar-link">
-                    <a href="/profile" class="link">
+                    <a href="/dashboard/profile" class="link">
                         <i class="bi bi-person-vcard"></i>
                         Profile
                     </a>
                 </div>
                 <div class="sidebar-link">
-                    <a href="/education" class="link">
+                    <a href="/dashboard/education" class="link">
                         <i class="bi bi-mortarboard"></i>
                         Education
                     </a>
                 </div>
                 <div class="sidebar-link">
-                    <a href="/skills" class="link">
+                    <a href="/dashboard/skills" class="link">
                         <i class="bi bi-kanban"></i>
                         Skills
                     </a>
                 </div>
                 <div class="sidebar-link">
-                    <a href="/experience" class="link">
+                    <a href="/dashboard/experience" class="link">
                         <i class="bi bi-briefcase"></i>
                         Experience
                     </a>
@@ -65,13 +65,13 @@
                     </a>
                 </div>
                 <div class="sidebar-link">
-                    <a href="/messages" class="link">
+                    <a href="/dashboard/messages" class="link">
                         <i class="bi bi-envelope"></i>
                         Messages
                     </a>
                 </div>
                 <div class="sidebar-link">
-                    <a href="/users" class="link">
+                    <a href="/dashboard/users" class="link">
                         <i class="bi bi-person-gear"></i>
                         Users
                     </a>
