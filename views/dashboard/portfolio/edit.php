@@ -21,6 +21,8 @@
 
         <div class="mt-5">
             <form action="" method="POST" enctype="multipart/form-data">
+                <?php echo csrfField(); ?>
+                <input type="hidden" name="id" value="<?php echo e($portfolio['id']) ?>">
                 <div class="row g-4">
                     <!-- Kolom Kiri: Upload & Preview Foto -->
                     <div class="col-md-4">
@@ -29,13 +31,16 @@
 
                             <!-- Tempat Preview Gambar -->
                             <div class="mb-3 text-center">
-                                <img id="img-preview" src="<?php echo BASE_URL ?>/assets/img/portfolio/<?php echo e($portfolio['image']) ?>"
+                                <img id="img-preview" src="<?php echo BASE_URL ?>/assets/img/upload/portfolio/<?php echo e($portfolio['image']) ?>"
                                      class="img-fluid rounded border mb-2 "
                                      alt="Preview Gambar"
                                      style="max-height: 230px; width: 100%; object-fit: cover;">
                             </div>
 
-                            <input type="file" name="gambar" id="input-gambar" class="form-control" accept="image/*"  required onchange="previewImage(event)">
+                            <input type="file" name="image" id="input-gambar" class="form-control <?php echo hasFlash('error', 'image') ? 'is-invalid' : '' ?>" accept="image/*"  onchange="previewImage(event)">
+                            <div  class="invalid-feedback">
+                                <?php echo e(getError('image')); ?>
+                            </div>
                         </div>
                     </div>
 
@@ -43,11 +48,17 @@
                     <div class="col-md-8 ps-5">
                         <div class="mb-3">
                             <label class="form-label fw-bold">Nama Proyek</label>
-                            <input type="text" name="judul" class="form-control" value="<?php echo e($portfolio['title']) ?>" placeholder="Masukkan nama proyek..." required>
+                            <input type="text" name="title" class="form-control <?php echo hasFlash('error', 'title') ? 'is-invalid' : '' ?>" value="<?php echo e($portfolio['title']) ?>" placeholder="Masukkan nama proyek..." required>
+                            <div  class="invalid-feedback">
+                                <?php echo e(getError('title')); ?>
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-bold">Keterangan</label>
-                            <textarea name="deskripsi" class="form-control" rows="5" placeholder="Masukkan deskripsi..." required><?php echo e($portfolio['description']) ?></textarea>
+                            <textarea name="description" class="form-control <?php echo hasFlash('error', 'description') ? 'is-invalid' : '' ?>" rows="5" placeholder="Masukkan deskripsi..." required><?php echo e($portfolio['description']) ?></textarea>
+                            <div  class="invalid-feedback">
+                                <?php echo e(getError('description')); ?>
+                            </div>
                         </div>
                     </div>
                 </div>

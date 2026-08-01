@@ -54,4 +54,5 @@ get('/dashboard/portfolio', [ROOT_DIR . '/controllers/portfolioController.php', 
 get('/dashboard/portfolio/create', [ROOT_DIR . '/controllers/portfolioController.php', 'create']);
 post('/dashboard/portfolio/create', [ROOT_DIR . '/controllers/portfolioController.php', 'handleCreate']);
 get('/dashboard/portfolio/edit', [ROOT_DIR . '/controllers/portfolioController.php', 'edit']);
+post('/dashboard/portfolio/edit', [ROOT_DIR . '/controllers/portfolioController.php', 'handleEdit']);
 post('/dashboard/portfolio/delete', [ROOT_DIR . '/controllers/portfolioController.php', 'delete']);

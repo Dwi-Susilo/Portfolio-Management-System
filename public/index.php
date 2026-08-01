@@ -16,5 +16,6 @@ require_once ROOT_DIR . '/core/view.php';
 require_once ROOT_DIR . '/core/router.php';
 require_once ROOT_DIR . '/routes/web.php';
 require_once ROOT_DIR . '/core/controller.php';
+require_once ROOT_DIR . '/core/validate.php';
 
 run();

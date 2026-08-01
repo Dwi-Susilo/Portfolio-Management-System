@@ -38,3 +38,12 @@ function addPortfolio($image, $title, $description)
 
     return mysqli_stmt_execute($stmt);
 }
+
+function updatePortfolio($image, $title, $description, $id)
+{
+    $stmt = mysqli_prepare(db(), "UPDATE portfolios SET image = ?, title = ?, description = ? WHERE id = ?");
+    mysqli_stmt_bind_param($stmt, "sssi", $image, $title, $description, $id);
+
+    return mysqli_stmt_execute($stmt);
+
+}

@@ -20,50 +20,20 @@ function create()
 function handleCreate()
 {
     verifyCsrf();
-
-    $judul      = trim($_POST['judul'] ?? '');
-    $deskripsi  = trim($_POST['deskripsi'] ?? '');
-    $namaGambar = $_FILES['gambar']['name'];
-    $gambar     = "";
-
     $_SESSION['error'] = [];
 
-    if ($namaGambar != "") {
-        $gambar_tmp = $_FILES['gambar']['tmp_name'];
-        $gambar_ext = strtolower(pathinfo($namaGambar, PATHINFO_EXTENSION));
-        $allowed    = ['jpg', 'jpeg', 'png', 'webp'];
+    $title       = trim($_POST['title'] ?? '');
+    $description = trim($_POST['description'] ?? '');
+    $image       = validateImg();
 
-        if (in_array($gambar_ext, $allowed)) {
-            $unique_img = "portfolio_" . time() . "." . $gambar_ext;
-            $uploadDir  = ROOT_DIR . "/public/assets/img/upload/portfolio/";
-
-            if (! is_dir($uploadDir)) {
-                mkdir($uploadDir, 0755, true);
-            }
-
-            if (! is_writeable($uploadDir)) {
-                $_SESSION['error']['gambar'] = "Folder upload tidak bisa ditulisi. Cek izin folder: $uploadDir";
-
-            } else {
-                $path = $uploadDir . $unique_img;
-
-                if (move_uploaded_file($gambar_tmp, $path)) {
-                    $gambar = $unique_img;
-                } else {
-                    $_SESSION['error']['gambar'] = "Gagal menyimpan gambar (kode error: " . $_FILES['gambar']['error'] . ")";
-                }
-            }
-
-        } else {
-            $_SESSION['error']['gambar'] = "Format foto tidak didukung!";
-        }
-    }
+    validateString('title', $title, 'Nama proyek tidak boleh kosong!');
+    validateString('description', $description, 'Keterangan tidak boleh kosong!');
 
     if (! empty($_SESSION['error'])) {
         redirect('/dashboard/portfolio/create');
     }
 
-    if (addPortfolio($gambar, $judul, $deskripsi)) {
+    if (addPortfolio($image, $title, $description)) {
         $_SESSION['alert']['success'] = 'Portfolio berhasil ditambahkan.';
     } else {
         $_SESSION['alert']['danger'] = 'Terjadi kesalahan, Portfolio gagal ditambahkan.';
@@ -75,7 +45,6 @@ function handleCreate()
 
 function edit()
 {
-    setLayout('dashboard');
 
     $rawId = query('id', '');
 
@@ -85,15 +54,88 @@ function edit()
         redirect('/dashboard/portfolio');
     }
 
-    $portfolio = getPortfolioById($id);
+    $oldData = getPortfolioById($id);
 
-    if (! $portfolio) {
+    if (! $oldData) {
         abort(404);
     }
+
+    $_SESSION['old']['image'] = $oldData['image'];
 
     setLayout('dashboard');
 
     return renderView('dashboard/portfolio/edit', [
-        'portfolio' => $portfolio,
+        'portfolio' => $oldData,
     ]);
+}
+
+function handleEdit()
+{
+    verifyCsrf();
+    $_SESSION['error'] = [];
+
+    $id          = trim($_POST['id'] ?? '');
+    $title       = trim($_POST['title'] ?? '');
+    $description = trim($_POST['description'] ?? '');
+    $image       = validateImg();
+
+    validateString('title', $title, 'Nama proyek tidak boleh kosong!');
+    validateString('description', $description, 'Keterangan tidak boleh kosong!');
+
+    if (! empty($_SESSION['error'])) {
+        redirect('/dashboard/portfolio/edit?id=' . encodeId($id));
+    }
+
+    if ($image === '') {
+        $image = getOld('image');
+    }
+
+    if (updatePortfolio($image, $title, $description, $id)) {
+        $_SESSION['alert']['success'] = 'Portfolio ' . $title . ' berhasil di ubah.';
+    } else {
+        $_SESSION['alert']['danger'] = 'Terjadi kesalahan, Portfolio ' . $title . ' gagal di ubah.';
+    }
+
+    redirect('/dashboard/portfolio');
+
+}
+
+function validateImg()
+{
+    $newImg = trim($_FILES['image']['name'] ?? '');
+    $image  = '';
+
+    if ($newImg != '') {
+        $img_tmp = $_FILES['image']['tmp_name'];
+        $img_ext = strtolower(pathinfo($newImg, PATHINFO_EXTENSION));
+        $allowed = ['jpg', 'jpeg', 'png', 'webp'];
+
+        if (in_array($img_ext, $allowed)) {
+            $unique_img = "portfolio_" . time() . "." . $img_ext;
+            $uploadDir  = ROOT_DIR . "/public/assets/img/upload/portfolio/";
+
+            if (! is_dir($uploadDir)) {
+                mkdir($uploadDir, 0755, true);
+            }
+
+            if (! is_writeable($uploadDir)) {
+                $_SESSION['error']['image'] = "Folder upload tidak bisa ditulisi. Cek izin folder: $uploadDir";
+
+            } else {
+                $path = $uploadDir . $unique_img;
+
+                if (move_uploaded_file($img_tmp, $path)) {
+                    $image = $unique_img;
+                } else {
+                    $_SESSION['error']['image'] = "Gagal menyimpan gambar (kode error: " . $_FILES['image']['error'] . ")";
+                }
+            }
+
+        } else {
+            $_SESSION['error']['image'] = "Format foto tidak didukung!";
+        }
+    }
+
+    return $image;
+
 }

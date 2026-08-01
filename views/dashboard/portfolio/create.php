@@ -42,7 +42,10 @@
                                      style="max-height: 230px; width: 100%; object-fit: cover;">
                             </div>
 
-                            <input type="file" name="gambar" id="input-gambar" class="form-control" accept="image/*" required onchange="previewImage(event)">
+                            <input type="file" name="image" id="input-gambar" class="form-control <?php echo hasFlash('error', 'image') ? 'is-invalid' : '' ?>" accept="image/*" required onchange="previewImage(event)">
+                            <div  class="invalid-feedback">
+                                <?php echo e(getError('image')); ?>
+                            </div>
                         </div>
                     </div>
 
@@ -50,11 +53,17 @@
                     <div class="col-md-8 px-5">
                         <div class="mb-3">
                             <label class="form-label fw-bold">Nama Proyek</label>
-                            <input type="text" name="judul" class="form-control" placeholder="Masukkan nama proyek..." required>
+                            <input type="text" name="title" class="form-control <?php echo hasFlash('error', 'title') ? 'is-invalid' : '' ?>" value="<?php echo e(getOld('title')) ?>" placeholder="Masukkan nama proyek..." required>
+                            <div  class="invalid-feedback">
+                                <?php echo e(getError('title')); ?>
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-bold">Keterangan</label>
-                            <textarea name="deskripsi" class="form-control" rows="5" placeholder="Masukkan deskripsi..." required></textarea>
+                            <textarea name="description" class="form-control <?php echo hasFlash('error', 'description') ? 'is-invalid' : '' ?>" rows="5" placeholder="Masukkan deskripsi..." required><?php echo e(getOld('description')) ?></textarea>
+                            <div  class="invalid-feedback">
+                                <?php echo e(getError('description')); ?>
+                            </div>
                         </div>
                     </div>
                 </div>
