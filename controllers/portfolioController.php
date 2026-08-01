@@ -100,6 +100,37 @@ function handleEdit()
 
 }
 
+function delete()
+{
+    verifyCsrf();
+
+    $id = (int) ($_POST['id'] ?? 0);
+
+    if (empty($id)) {
+        redirect('/dashboard/portfolio');
+    }
+
+    $portfolio = getPortfolioById($id);
+
+    if (! $portfolio) {
+        abort(404);
+    }
+
+    if (deletePortfolio($portfolio['id'])) {
+        $imagePath = ROOT_DIR . '/public/assets/img/upload/portfolio/' . $portfolio['image'];
+
+        if (is_file($imagePath)) {
+            unlink($imagePath);
+        }
+
+        $_SESSION['alert']['success'] = 'Portfolio ' . $portfolio['title'] . ' berhasil di hapus.';
+    } else {
+        $_SESSION['alert']['danger'] = 'Terjadi kesalahan, Portfolio ' . $portfolio['title'] . ' gagal di hapus.';
+    }
+
+    redirect('/dashboard/portfolio');
+}
+
 function validateImg()
 {
     $newImg = trim($_FILES['image']['name'] ?? '');

@@ -36,7 +36,10 @@ function addPortfolio($image, $title, $description)
     $stmt = mysqli_prepare(db(), "INSERT INTO portfolios (image, title, description) VALUES (?,?,?) ");
     mysqli_stmt_bind_param($stmt, "sss", $image, $title, $description);
 
-    return mysqli_stmt_execute($stmt);
+    $execute = mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    return $execute;
 }
 
 function updatePortfolio($image, $title, $description, $id)
@@ -44,6 +47,20 @@ function updatePortfolio($image, $title, $description, $id)
     $stmt = mysqli_prepare(db(), "UPDATE portfolios SET image = ?, title = ?, description = ? WHERE id = ?");
     mysqli_stmt_bind_param($stmt, "sssi", $image, $title, $description, $id);
 
-    return mysqli_stmt_execute($stmt);
+    $execute = mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
 
+    return $execute;
+
+}
+
+function deletePortfolio($id)
+{
+    $stmt = mysqli_prepare(db(), "DELETE FROM portfolios WHERE id = ? ");
+    mysqli_stmt_bind_param($stmt, "i", $id);
+
+    $execute = mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    return $execute;
 }
