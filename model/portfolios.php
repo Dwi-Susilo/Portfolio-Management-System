@@ -30,3 +30,11 @@ function getPortfolioById($id)
     return $portfolio;
 
 }
+
+function addPortfolio($image, $title, $description)
+{
+    $stmt = mysqli_prepare(db(), "INSERT INTO portfolios (image, title, description) VALUES (?,?,?) ");
+    mysqli_stmt_bind_param($stmt, "sss", $image, $title, $description);
+
+    return mysqli_stmt_execute($stmt);
+}

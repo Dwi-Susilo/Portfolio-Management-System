@@ -27,6 +27,7 @@
 
         <div class="">
             <form action="" method="POST" enctype="multipart/form-data">
+                <?php echo csrfField(); ?>
                 <div class="row g-4">
                     <!-- Kolom Kiri: Upload & Preview Foto -->
                     <div class="col-md-4">

@@ -2,9 +2,11 @@
     <div class="box-container">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h5 class="mb-0">Daftar Portfolio</h5>
-            <a href="/dashboard/portfolio/create" class="btn btn-primary btn-sm">
-                <i class="bi bi-plus-circle"></i> Tambah Portfolio
-            </a>
+            <?php if (! empty($portfolios)): ?>
+                <a href="/dashboard/portfolio/create" class="btn btn-primary btn-sm">
+                    <i class="bi bi-plus-circle"></i> Tambah Portfolio
+                </a>
+            <?php endif; ?>
         </div>
 
         <?php if (hasFlash('alert', 'success')): ?>
@@ -28,9 +30,9 @@
                 <i class="bi bi-briefcase fs-1 text-light mb-3"></i>
                 <p class="text-light mb-3">Belum ada portfolio.</p>
                 <div>
-                <a href="/dashboard/portfolio/create" class="btn btn-primary">
-                    <i class="bi bi-plus-circle"></i> Tambah Portfolio
-                </a>
+                    <a href="/dashboard/portfolio/create" class="btn btn-primary">
+                        <i class="bi bi-plus-circle"></i> Tambah Portfolio
+                    </a>
                 </div>
             </div>
 
@@ -54,7 +56,7 @@
                         <tr class="border-bottom border-secondary border-opacity-25" >
                             <td>
                                 <img
-                                src="<?php echo BASE_URL ?>/assets/img/portfolio/<?php echo e($portfolio['image']) ?>" alt="<?php echo e($portfolio['title']) ?>" style="width: 120px; height: 60px; object-fit: cover; border-radius: 4px;"/>
+                                src="<?php echo BASE_URL ?>/assets/img/upload/portfolio/<?php echo e($portfolio['image']) ?>" alt="<?php echo e($portfolio['title']) ?>" style="width: 120px; height: 60px; object-fit: cover; border-radius: 4px;"/>
                             </td>
                             <td><?php echo e($portfolio['title']) ?></td>
                             <td><?php echo e(mb_strimwidth($portfolio['description'], 0, 80, '...')) ?></td>

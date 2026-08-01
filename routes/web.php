@@ -52,5 +52,6 @@ get('/dashboard/users/delete', [ROOT_DIR . '/controllers/usersController.php', '
 // Portfolio Routes
 get('/dashboard/portfolio', [ROOT_DIR . '/controllers/portfolioController.php', 'portfolio']);
 get('/dashboard/portfolio/create', [ROOT_DIR . '/controllers/portfolioController.php', 'create']);
+post('/dashboard/portfolio/create', [ROOT_DIR . '/controllers/portfolioController.php', 'handleCreate']);
 get('/dashboard/portfolio/edit', [ROOT_DIR . '/controllers/portfolioController.php', 'edit']);
 post('/dashboard/portfolio/delete', [ROOT_DIR . '/controllers/portfolioController.php', 'delete']);
