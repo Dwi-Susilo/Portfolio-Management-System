@@ -36,8 +36,10 @@ get('/dashboard/skills/delete', [ROOT_DIR . '/controllers/skillsController.php',
 // Experience Routes
 get('/dashboard/experience', [ROOT_DIR . '/controllers/experienceController.php', 'experience']);
 get('/dashboard/experience/create', [ROOT_DIR . '/controllers/experienceController.php', 'create']);
+post('/dashboard/experience/create', [ROOT_DIR . '/controllers/experienceController.php', 'handleCreate']);
 get('/dashboard/experience/edit', [ROOT_DIR . '/controllers/experienceController.php', 'edit']);
-get('/dashboard/experience/delete', [ROOT_DIR . '/controllers/experienceController.php', 'delete']);
+post('/dashboard/experience/edit', [ROOT_DIR . '/controllers/experienceController.php', 'handleEdit']);
+post('/dashboard/experience/delete', [ROOT_DIR . '/controllers/experienceController.php', 'delete']);
 
 // Messages Routes
 get('/dashboard/messages', [ROOT_DIR . '/controllers/messagesController.php', 'messages']);
