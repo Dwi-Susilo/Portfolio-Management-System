@@ -1,3 +1,7 @@
+<?php
+    /** @var array $portfolios */
+?>
+
 <header>
     <!-- Hero Section -->
     <section id="home" class="section hero-section">
@@ -159,33 +163,17 @@
         <div class="container">
             <h2 class="section-title">Featured <span class="accent-text">Work</span></h2>
             <div class="row g-4">
-            <div class="col-md-4">
-                <div class="glass-card overflow-hidden">
-                <img src="assets/img/FTTH Network Deployment.jpg" class="img-fluid" alt="Project" />
-                <div class="p-4">
-                    <h5>FTTH Network Deployment</h5>
-                    <p class="text-muted text-desc small">Placeholder for large-scale fiber optic infrastructure projects managed under PT. Telkom Akses.</p>
-                </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="glass-card overflow-hidden">
-                <img src="assets/img/Network Assurance System.jpg" class="img-fluid" alt="Project" />
-                <div class="p-4">
-                    <h5>Network Assurance System</h5>
-                    <p class="text-muted text-desc small">Implementation of SLA-based troubleshooting protocols and preventive maintenance for regional nodes.</p>
-                </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="glass-card overflow-hidden">
-                <img src="assets/img/GIS.jpeg" class="img-fluid" alt="Project" />
-                <div class="p-4">
-                    <h5>GIS & Site Surveying</h5>
-                    <p class="text-muted text-desc small">Detailed route mapping and Bill of Quantity preparation for underground and aerial cabling projects.</p>
-                </div>
-                </div>
-            </div>
+                <?php foreach ($portfolios as $portfolio): ?>
+                    <div class="col-md-4">
+                        <div class="glass-card overflow-hidden">
+                            <img src="<?php echo BASE_URL ?>/assets/img/upload/portfolio/<?php echo e($portfolio['image']) ?>" class="img-fluid" alt="<?php echo e($portfolio['title']) ?>" />
+                            <div class="p-4">
+                                <h5><?php echo e($portfolio['title']) ?></h5>
+                                <p class="text-muted text-desc small"><?php echo e($portfolio['description']) ?></p>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
