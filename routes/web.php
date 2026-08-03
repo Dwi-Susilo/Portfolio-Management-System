@@ -10,7 +10,7 @@ get('/login', [ROOT_DIR . '/controllers/authController.php', 'login']);
 post('/login', [ROOT_DIR . '/controllers/authController.php', 'handleLogin']);
 get('/register', [ROOT_DIR . '/controllers/authController.php', 'register']);
 post('/register', [ROOT_DIR . '/controllers/authController.php', 'handleRegister']);
-post('/logout', [ROOT_DIR . '/core/controller.php', 'logout']);
+post('/dashboard/logout', [ROOT_DIR . '/controllers/authController.php', 'logout']);
 
 // Dashboard Routes
 get('/dashboard', [ROOT_DIR . '/controllers/dashboardController.php', 'dashboard']);
