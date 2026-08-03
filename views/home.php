@@ -1,5 +1,6 @@
 <?php
     /** @var array $portfolios */
+    /** @var array $experiences */
 ?>
 
 <header>
@@ -56,55 +57,36 @@
         <div class="container">
             <h2 class="section-title">Work <span class="accent-text">Experience</span></h2>
             <div class="timeline">
-            <!-- Exp 1 -->
-            <div class="timeline-item">
-                <div class="glass-card p-4 ms-3">
-                <div class="d-flex justify-content-between align-items-start mb-2">
-                    <h4 class="mb-0">Project Controller</h4>
-                    <span class="badge bg-primary">2024 - Sekarang</span>
+            <?php $i = 1; ?>
+            <?php foreach ($experiences as $index => $experience): ?>
+                <?php
+                    $start_year = ! empty($experience['start_date']) ? date('Y', strtotime($experience['start_date'])) : '';
+
+                    if (empty($experience['end_date']) || $experience['end_date'] == '0000-00-00' || strtolower($experience['end_date']) == 'present') {
+                        $end_year = 'Sekarang';
+                    } else {
+                        $end_year = date('Y', strtotime($experience['end_date']));
+                    }
+
+                    $badge_class = ($index === 0) ? 'bg-primary' : 'bg-secondary text-white opacity-75';
+                ?>
+                <!-- Exp <?php echo $index + 1; ?> -->
+                <div class="timeline-item">
+                    <div class="glass-card p-4 ms-3">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h4 class="mb-0"><?php echo $experience['position']; ?></h4>
+                            <span class="badge <?php echo $badge_class; ?>">
+                                <?php echo $start_year; ?> – <?php echo $end_year; ?>
+                            </span>
+                        </div>
+                        <h6 class="accent-text mb-3"><?php echo $experience['company_name']; ?> | <?php echo $experience['location']; ?></h6>
+                        <p class="text-muted text-desc small">
+                            <?php echo $experience['description']; ?>
+                        </p>
+                    </div>
                 </div>
-                <h6 class="accent-text mb-3">PT. Telkom Akses | Jakarta</h6>
-                <p class="text-muted text-desc small">
-                    Pengawasan seluruh proses proyek agar sesuai jadwal yang ditetapkan mulai dari survei dan akuisisi lokasi, negosiasi perizinan dengan pihak pemerintah setempat, implementasi, uji terima, hingga penyelesaian administrasi
-                    untuk proses penagihan kepada klien.
-                </p>
-                </div>
-            </div>
-            <!-- Exp 2 -->
-            <div class="timeline-item">
-                <div class="glass-card p-4 ms-3">
-                <div class="d-flex justify-content-between align-items-start mb-2">
-                    <h4 class="mb-0">Team Leader Assurance FTTH</h4>
-                    <span class="badge bg-secondary">2020 - 2024</span>
-                </div>
-                <h6 class="accent-text mb-3">PT. Telkom Akses | Jakarta</h6>
-                <p class="text-muted text-desc small">
-                    Memimpin dan mengawasi tim teknis di lapangan, memastikan hasil pekerjaan memenuhi standar teknis, menyelesaikan kendala ROW, serta mengelola material dan tenaga kerja secara efisien.
-                </p>
-                </div>
-            </div>
-            <!-- Exp 3 -->
-            <div class="timeline-item">
-                <div class="glass-card p-4 ms-3">
-                <div class="d-flex justify-content-between align-items-start mb-2">
-                    <h4 class="mb-0">Helpdesk Assurance</h4>
-                    <span class="badge bg-secondary">2018 - 2020</span>
-                </div>
-                <h6 class="accent-text mb-3">PT. Telkom Akses | Jakarta</h6>
-                <p class="text-muted text-desc small">Memantau performa jaringan menggunakan NMS, mengelola Trouble Ticket sesuai SLA, dan melakukan koordinasi eskalasi intensif dengan tim Tier 2/3.</p>
-                </div>
-            </div>
-            <!-- Exp 4 -->
-            <div class="timeline-item">
-                <div class="glass-card p-4 ms-3">
-                <div class="d-flex justify-content-between align-items-start mb-2">
-                    <h4 class="mb-0">Surveyor Icon+</h4>
-                    <span class="badge bg-secondary">2015 - 2017</span>
-                </div>
-                <h6 class="accent-text mb-3">PT. Gerbang Sinergi Prima | Jakarta</h6>
-                <p class="text-muted text-desc small">Survei jalur kabel fiber optik, menentukan titik optimal ODC/ODP, menghitung BoQ, dan menyusun Laporan Hasil Survei (LHS) menggunakan Google Earth/GIS.</p>
-                </div>
-            </div>
+            <?php endforeach; ?>
+
             </div>
         </div>
     </section>
