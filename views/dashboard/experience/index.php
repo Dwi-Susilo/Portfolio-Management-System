@@ -28,9 +28,9 @@
                             <td><?php echo e($experience['company_name']) ?></td>
                             <td><?php echo e($experience['location']) ?></td>
                             <td>
-                                <?php echo e(date('M Y', strtotime($experience['start_date']))) ?>
+                                <?php echo e(date('Y', strtotime($experience['start_date']))) ?>
                                 &ndash;
-                                <?php echo $experience['end_date'] ? e(date('M Y', strtotime($experience['end_date']))) : 'Sekarang' ?>
+                                <?php echo $experience['end_date'] ? e(date('Y', strtotime($experience['end_date']))) : 'Sekarang' ?>
                             </td>
                             <td>
                                 <a href="/dashboard/experience/edit?id=<?php echo encodeId($experience['id']) ?>" class="btn btn-sm btn-outline-primary me-2">

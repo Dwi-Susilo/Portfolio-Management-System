@@ -23,28 +23,28 @@ function handleCreate()
 
     $institutionName = trim($_POST['institution_name'] ?? '');
     $location        = trim($_POST['location'] ?? '');
-    $startYear       = trim($_POST['start_year'] ?? '');
+    $startDate       = trim($_POST['start_date'] ?? '');
     $isCurrent       = isset($_POST['is_current']);
-    $endYear         = $isCurrent ? null : trim($_POST['end_year'] ?? '');
+    $endDate         = $isCurrent ? null : trim($_POST['end_date'] ?? '');
 
     $_SESSION['old']['institution_name'] = $institutionName;
     $_SESSION['old']['location']         = $location;
-    $_SESSION['old']['start_year']       = $startYear;
+    $_SESSION['old']['start_date']       = $startDate;
     $_SESSION['old']['is_current']       = $isCurrent;
-    $_SESSION['old']['end_year']         = $endYear;
+    $_SESSION['old']['end_date']         = $endDate;
 
     validateString('institution_name', $institutionName, 'Nama intitusi tidak boleh kosong!');
     validateString('location', $location, 'Lokasi tidak boleh kosong!');
 
-    if ($startYear === '') {
-        $_SESSION['error']['start_year'] = 'Bagian ini tidak boleh kosong!';
+    if ($startDate === '') {
+        $_SESSION['error']['start_date'] = 'Bagian ini tidak boleh kosong!';
     }
 
     if (! $isCurrent) {
-        validateString('end_year', $endYear, 'Bagian ini wajib diisi (atau centang "jika masih")!');
+        validateString('end_date', $endDate, 'Bagian ini wajib diisi (atau centang "jika masih")!');
     }
 
-    if ($startYear !== '' && ! empty($endYear) && $endYear < $startYear) {
+    if ($startDate !== '' && ! empty($endDate) && $endDate < $startDate) {
         $_SESSION['error']['end_date'] = 'Tanggal selesai tidak boleh sebelum tanggal mulai!';
     }
 
@@ -52,7 +52,7 @@ function handleCreate()
         redirect('/dashboard/education/create');
     }
 
-    if (addEducation($institutionName, $location, $startYear, $endYear)) {
+    if (addEducation($institutionName, $location, $startDate, $endDate)) {
         $_SESSION['alert']['success'] = 'Data Education berhasil ditambahkan.';
     } else {
         $_SESSION['alert']['danger'] = 'Terjadi kesalahan, data Education gagal ditambahkan.';
@@ -79,7 +79,7 @@ function edit()
     setLayout('dashboard');
 
     return renderView('dashboard/education/edit', [
-        'Education' => $oldData,
+        'education' => $oldData,
     ]);
 }
 
@@ -91,28 +91,28 @@ function handleEdit()
     $id              = trim($_POST['id'] ?? '');
     $institutionName = trim($_POST['institution_name'] ?? '');
     $location        = trim($_POST['location'] ?? '');
-    $startYear       = trim($_POST['start_year'] ?? '');
+    $startDate       = trim($_POST['start_date'] ?? '');
     $isCurrent       = isset($_POST['is_current']);
-    $endYear         = $isCurrent ? null : trim($_POST['end_year'] ?? '');
+    $endDate         = $isCurrent ? null : trim($_POST['end_date'] ?? '');
 
     $_SESSION['old']['institution_name'] = $institutionName;
     $_SESSION['old']['location']         = $location;
-    $_SESSION['old']['start_year']       = $startYear;
+    $_SESSION['old']['start_date']       = $startDate;
     $_SESSION['old']['is_current']       = $isCurrent;
-    $_SESSION['old']['end_year']         = $endYear;
+    $_SESSION['old']['end_date']         = $endDate;
 
     validateString('institution_name', $institutionName, 'Nama intitusi tidak boleh kosong!');
     validateString('location', $location, 'Lokasi tidak boleh kosong!');
 
-    if ($startYear === '') {
-        $_SESSION['error']['start_year'] = 'Bagian ini tidak boleh kosong!';
+    if ($startDate === '') {
+        $_SESSION['error']['start_date'] = 'Bagian ini tidak boleh kosong!';
     }
 
     if (! $isCurrent) {
-        validateString('end_year', $endYear, 'Bagian ini wajib diisi (atau centang "jika masih")!');
+        validateString('end_date', $endDate, 'Bagian ini wajib diisi (atau centang "jika masih")!');
     }
 
-    if ($startYear !== '' && ! empty($endYear) && $endYear < $startYear) {
+    if ($startDate !== '' && ! empty($endDate) && $endDate < $startDate) {
         $_SESSION['error']['end_date'] = 'Tanggal selesai tidak boleh sebelum tanggal mulai!';
     }
 
@@ -120,7 +120,7 @@ function handleEdit()
         redirect('/dashboard/education/edit?id=' . encodeId($id));
     }
 
-    if (updateEducation($id, $institutionName, $location, $startYear, $endYear)) {
+    if (updateEducation($id, $institutionName, $location, $startDate, $endDate)) {
         $_SESSION['alert']['success'] = 'Data Education ' . $institutionName . ' berhasil di ubah.';
     } else {
         $_SESSION['alert']['danger'] = 'Terjadi kesalahan, Experience ' . $institutionName . ' gagal di ubah.';

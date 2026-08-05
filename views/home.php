@@ -1,6 +1,7 @@
 <?php
     /** @var array $portfolios */
     /** @var array $experiences */
+    /** @var array $educations */
 ?>
 
 <header>
@@ -74,14 +75,14 @@
                 <div class="timeline-item">
                     <div class="glass-card p-4 ms-3">
                         <div class="d-flex justify-content-between align-items-start mb-2">
-                            <h4 class="mb-0"><?php echo $experience['position']; ?></h4>
+                            <h4 class="mb-0"><?php echo e($experience['position']); ?></h4>
                             <span class="badge <?php echo $badge_class; ?>">
-                                <?php echo $start_year; ?> – <?php echo $end_year; ?>
+                                <?php echo e($start_year); ?> – <?php echo e($end_year); ?>
                             </span>
                         </div>
-                        <h6 class="accent-text mb-3"><?php echo $experience['company_name']; ?> | <?php echo $experience['location']; ?></h6>
+                        <h6 class="accent-text mb-3"><?php echo e($experience['company_name']); ?> | <?php echo e($experience['location']); ?></h6>
                         <p class="text-muted text-desc small">
-                            <?php echo $experience['description']; ?>
+                            <?php echo e($experience['description']); ?>
                         </p>
                     </div>
                 </div>
@@ -167,24 +168,27 @@
             <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="timeline">
-                <div class="timeline-item">
-                    <div class="glass-card p-4 ms-3">
-                    <h5>Universitas Asa Indonesia</h5>
-                    <span class="accent-text">2024 - Sekarang</span>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="glass-card p-4 ms-3">
-                    <h5>SMK Negeri 7 Jakarta</h5>
-                    <span class="accent-text">2007 - 2010</span>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="glass-card p-4 ms-3">
-                    <h5>SMP Negeri 158 Jakarta</h5>
-                    <span class="accent-text">2006 - 2008</span>
-                    </div>
-                </div>
+                    <?php foreach ($educations as $education): ?>
+                        <?php
+                            $startYearEducation = ! empty($education['start_date']) ? date('Y', strtotime($education['start_date'])) : '';
+
+                            if (empty($education['end_date']) || $education['end_date'] == '0000-00-00' || strtolower($education['end_date']) == 'present') {
+                                $endYearEducation = 'Sekarang';
+                            } else {
+                                $endYearEducation = date('Y', strtotime($education['end_date']));
+                            }
+
+                        ?>
+                        <div class="timeline-item">
+                            <div class="glass-card p-4 ms-3">
+                            <h5><?php echo e($education['institution_name']); ?></h5>
+                            <span class="accent-text">
+                                <?php echo e($startYearEducation); ?> – <?php echo e($endYearEducation); ?>
+                            </span>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+
                 </div>
             </div>
             </div>

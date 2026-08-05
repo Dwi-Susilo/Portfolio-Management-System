@@ -53,7 +53,7 @@
 
                 <div class="mb-3">
                     <div class="form-check mt-2">
-                        <input type="checkbox" class="form-check-input" name="still_working" id="masih-bekerja" value="1" onchange="toggleEndDate(this)">
+                        <input type="checkbox" class="form-check-input" name="still_working" id="masih-bekerja" value="1" onchange="toggleEndDate(this)" <?php echo $stillWorking ? 'checked' : '' ?>>
                         <label class="form-check-label" for="masih-bekerja">Masih bekerja di sini</label>
                     </div>
                 </div>

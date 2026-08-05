@@ -36,11 +36,11 @@
                                 <?php echo $education['end_year'] ? e(date('M Y', strtotime($education['end_year']))) : 'Sekarang' ?>
                             </td>
                             <td>
-                                <a href="/dashboard/experience/edit?id=<?php echo encodeId($education['id']) ?>" class="btn btn-sm btn-outline-primary me-2">
+                                <a href="<?php echo getPath(); ?>/edit?id=<?php echo encodeId($education['id']) ?>" class="btn btn-sm btn-outline-primary me-2">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
 
-                                <form action="/dashboard/experience/delete" method="post" class="d-inline" onsubmit="return confirm('Yakin mau hapus experience \'<?php echo e(addslashes($education['position'])) ?>\'?');">
+                                <form action="<?php echo getPath(); ?>/delete" method="post" class="d-inline" onsubmit="return confirm('Yakin mau hapus experience \'<?php echo e(addslashes($education['position'])) ?>\'?');">
                                     <?php echo csrfField(); ?>
                                     <input type="hidden" name="id" value="<?php echo (int) $education['id'] ?>" />
                                     <button type="submit" class="btn btn-sm btn-outline-danger">
