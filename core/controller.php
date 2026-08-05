@@ -5,11 +5,11 @@ function run()
 {
     try {
         echo resolve();
-    } catch (\Exception $e) {
-        setStatusCode($e->getCode());
-        echo renderView('_error', [
-            'exception' => $e,
-        ]);
+    } catch (\Throwable $e) {
+        $code    = $e->getCode();
+        $message = $e->getMessage();
+
+        abort($code, $message);
     }
 
 }

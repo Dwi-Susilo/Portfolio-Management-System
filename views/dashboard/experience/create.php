@@ -29,16 +29,16 @@
                 </div>
                 <div class="mb-3 row">
                     <div class="col">
-                        <label class="form-label fw-bold">Mulai Kerja</label>
-                        <input type="date" name="start_date" class="form-control <?php echo hasFlash('error', 'start_date') ? 'is-invalid' : '' ?>" value="<?php echo e(getOld('start_date')) ?>">
+                        <label class="form-label fw-bold">Mulai bekerja</label>
+                        <input type="number" min="1900" max="2099" name="start_date" class="form-control <?php echo hasFlash('error', 'start_date') ? 'is-invalid' : '' ?>" value="<?php echo e(getOld('start_date')) ?>" placeholder="contoh: 2000">
                         <div class="invalid-feedback">
                             <?php echo e(getError('start_date')); ?>
                         </div>
                     </div>
                     <div class="col">
-                        <label class="form-label fw-bold">Selesai Kerja</label>
+                        <label class="form-label fw-bold">Selesai</label>
                         <div id="end-date-wrapper">
-                            <input type="date" name="end_date" id="end_date" class="form-control <?php echo hasFlash('error', 'end_date') ? 'is-invalid' : '' ?>" value="<?php echo e(getOld('end_date')) ?>">
+                            <input type="number" min="1900" max="2099" name="end_date" id="end_date" class="form-control <?php echo hasFlash('error', 'end_date') ? 'is-invalid' : '' ?>" value="<?php echo e(getOld('end_date')) ?>" placeholder="contoh: 2026">
                             <div class="invalid-feedback">
                                 <?php echo e(getError('end_date')); ?>
                             </div>
