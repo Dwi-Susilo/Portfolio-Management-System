@@ -39,8 +39,9 @@ function db()
             }
 
         } catch (mysqli_sql_exception $e) {
+            $errorCode    = $e->getCode() ? $e->getCode() : 500;
             $errorMessage = (defined('APP_ENV') && APP_ENV === 'development') ? $e->getMessage() : null;
-            abort(500, $errorMessage);
+            abort($errorCode, $errorMessage);
         }
     }
 

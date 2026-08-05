@@ -18,20 +18,26 @@ get('/dashboard', [ROOT_DIR . '/controllers/dashboardController.php', 'dashboard
 // Profile Routes
 get('/dashboard/profile', [ROOT_DIR . '/controllers/profileController.php', 'profile']);
 get('/dashboard/profile/create', [ROOT_DIR . '/controllers/profileController.php', 'create']);
+post('/dashboard/profile/create', [ROOT_DIR . '/controllers/profileController.php', 'handleCreate']);
 get('/dashboard/profile/edit', [ROOT_DIR . '/controllers/profileController.php', 'edit']);
-get('/dashboard/profile/delete', [ROOT_DIR . '/controllers/profileController.php', 'delete']);
+post('/dashboard/profile/edit', [ROOT_DIR . '/controllers/profileController.php', 'handleEdit']);
+post('/dashboard/profile/delete', [ROOT_DIR . '/controllers/profileController.php', 'delete']);
 
 // Education Routes
 get('/dashboard/education', [ROOT_DIR . '/controllers/educationController.php', 'education']);
 get('/dashboard/education/create', [ROOT_DIR . '/controllers/educationController.php', 'create']);
+post('/dashboard/education/create', [ROOT_DIR . '/controllers/educationController.php', 'handleCreate']);
 get('/dashboard/education/edit', [ROOT_DIR . '/controllers/educationController.php', 'edit']);
-get('/dashboard/education/delete', [ROOT_DIR . '/controllers/educationController.php', 'delete']);
+post('/dashboard/education/edit', [ROOT_DIR . '/controllers/educationController.php', 'handleEdit']);
+post('/dashboard/education/delete', [ROOT_DIR . '/controllers/educationController.php', 'delete']);
 
 // Skills Routes
 get('/dashboard/skills', [ROOT_DIR . '/controllers/skillsController.php', 'skills']);
 get('/dashboard/skills/create', [ROOT_DIR . '/controllers/skillsController.php', 'create']);
+post('/dashboard/skills/create', [ROOT_DIR . '/controllers/skillsController.php', 'handleCreate']);
 get('/dashboard/skills/edit', [ROOT_DIR . '/controllers/skillsController.php', 'edit']);
-get('/dashboard/skills/delete', [ROOT_DIR . '/controllers/skillsController.php', 'delete']);
+post('/dashboard/skills/edit', [ROOT_DIR . '/controllers/skillsController.php', 'handleEdit']);
+post('/dashboard/skills/delete', [ROOT_DIR . '/controllers/skillsController.php', 'delete']);
 
 // Experience Routes
 get('/dashboard/experience', [ROOT_DIR . '/controllers/experienceController.php', 'experience']);
@@ -43,13 +49,16 @@ post('/dashboard/experience/delete', [ROOT_DIR . '/controllers/experienceControl
 
 // Messages Routes
 get('/dashboard/messages', [ROOT_DIR . '/controllers/messagesController.php', 'messages']);
-get('/dashboard/messages/delete', [ROOT_DIR . '/controllers/messagesController.php', 'delete']);
+post('/dashboard/messages', [ROOT_DIR . '/controllers/messagesController.php', 'handleMessages']);
+post('/dashboard/messages/delete', [ROOT_DIR . '/controllers/messagesController.php', 'delete']);
 
 // Users Routes
 get('/dashboard/users', [ROOT_DIR . '/controllers/usersController.php', 'users']);
 get('/dashboard/users/create', [ROOT_DIR . '/controllers/usersController.php', 'create']);
+post('/dashboard/users/create', [ROOT_DIR . '/controllers/usersController.php', 'handleCreate']);
 get('/dashboard/users/edit', [ROOT_DIR . '/controllers/usersController.php', 'edit']);
-get('/dashboard/users/delete', [ROOT_DIR . '/controllers/usersController.php', 'delete']);
+post('/dashboard/users/edit', [ROOT_DIR . '/controllers/usersController.php', 'handleEdit']);
+post('/dashboard/users/delete', [ROOT_DIR . '/controllers/usersController.php', 'delete']);
 
 // Portfolio Routes
 get('/dashboard/portfolio', [ROOT_DIR . '/controllers/portfolioController.php', 'portfolio']);

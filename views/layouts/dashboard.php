@@ -91,7 +91,37 @@
     </nav>
     <div class="sidebar-box"></div>
 
-    {{content}}
+    <main class="main">
+        <div class="box-container">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="mb-0"><?php echo getTitle(); ?></h5>
+                <?php if (getTitle() !== "CREATE" && getTitle() !== "EDIT"): ?>
+                    <a href="<?php echo getPath(); ?>/create" class="btn btn-primary btn-sm">
+                        <i class="bi bi-plus-circle"></i> Tambah <?php echo getTitle(); ?>
+                    </a>
+                <?php endif; ?>
+            </div>
+
+            <?php if (hasFlash('alert', 'success')): ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <?php echo e(getAlert('success')); ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php endif; ?>
+
+            <?php if (hasFlash('alert', 'danger')): ?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <?php echo e(getAlert('danger')); ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php endif; ?>
+
+            {{content}}
+
+        </div>
+    </main>
+
 
     <!-- Bootstrap 5 JS  -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>

@@ -7,7 +7,7 @@ function portfolio()
 
     setLayout('dashboard');
     return renderView('dashboard/portfolio/index', [
-        'portfolios' => getAllPortfolio(),
+        'data' => getAllPortfolio(),
     ]);
 }
 

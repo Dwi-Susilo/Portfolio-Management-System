@@ -1,13 +1,12 @@
-<?php
-    /** @var array $data */
-?>
-
-<?php $portfolios = $data; ?>
-
-<?php if (empty($portfolios)): ?>
+<?php if (empty($skills)): ?>
     <div class="card shadow-sm p-5 text-center mt-5">
         <i class="bi bi-briefcase fs-1 text-light mb-3"></i>
-        <p class="text-light mb-3">Belum ada portfolio.</p>
+        <p class="text-light mb-3">Belum ada skills.</p>
+        <div>
+            <a href="/dashboard/portfolio/create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Tambah Skills
+            </a>
+        </div>
     </div>
 <?php else: ?>
     <div class="card  text-light border-0 shadow-lg rounded-3 overflow-hidden mt-5" style="--bs-table-bg: transparent; backdrop-filter: blur(16px);">
@@ -23,7 +22,7 @@
                     </tr>
                 </thead>
                 <tbody style="font-size: 12px;">
-                    <?php foreach ($portfolios as $portfolio): ?>
+                    <?php foreach ($skills as $portfolio): ?>
 
                     <tr class="border-bottom border-secondary border-opacity-25" >
                         <td>
