@@ -6,12 +6,12 @@ function getAllEducation()
     $stmt = mysqli_prepare(db(), "SELECT id, institution_name, location, start_date, end_date FROM educations ORDER BY start_date DESC");
     mysqli_stmt_execute($stmt);
 
-    $result      = mysqli_stmt_get_result($stmt);
-    $educationss = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    $result     = mysqli_stmt_get_result($stmt);
+    $educations = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
     mysqli_stmt_close($stmt);
 
-    return $educationss;
+    return $educations;
 }
 
 function getEducationById($id)
