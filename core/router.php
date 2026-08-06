@@ -44,6 +44,10 @@ function resolve()
         abort(404, '$callback = ' . $callback . ' - tidak ditemukan!');
     }
 
+    if (strpos($path, '/dashboard') === 0 && isGuest()) {
+        redirect('/login');
+    }
+
     if (is_string($callback)) {
         return $callback;
     }
