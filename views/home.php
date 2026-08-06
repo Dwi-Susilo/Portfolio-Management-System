@@ -175,59 +175,88 @@
     <section id="contact" class="section py-5">
         <div class="container">
             <h2 class="section-title text-center">Get In <span class="accent-text">Touch</span></h2>
+
+            <?php if (hasFlash('alert', 'success')): ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <?php echo e(getAlert('success')); ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php endif; ?>
+
+            <?php if (hasFlash('alert', 'danger')): ?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <?php echo e(getAlert('danger')); ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php endif; ?>
+
             <div class="row g-5">
-            <div class="col-lg-5">
-                <div class="glass-card p-5 h-100">
-                <h4 class="mb-4">Contact Information</h4>
-                <div class="d-flex mb-4">
-                    <i class="bi bi-geo-alt accent-text fs-4 me-3"></i>
-                    <p class="text-muted text-desc mb-0">Perumnas Klender, Jaktim</p>
-                </div>
-                <div class="d-flex mb-4">
-                    <i class="bi bi-envelope accent-text fs-4 me-3"></i>
-                    <p class="text-muted text-desc mb-0">dendinovianto@gmail.com</p>
-                </div>
-                <div class="d-flex mb-4">
-                    <i class="bi bi-telephone accent-text fs-4 me-3"></i>
-                    <p class="text-muted text-desc mb-0">+6281286687844</p>
-                </div>
-                <div class="mt-5">
-                    <h5 class="mb-3">Social Connections</h5>
-                    <div class="d-flex gap-3">
-                    <a href="https://www.linkedin.com/" target="_blank" class="btn btn-outline-custom p-2 px-3"><i class="bi bi-linkedin"></i></a>
-                    <a href="https://github.com/" target="_blank" class="btn btn-outline-custom p-2 px-3"><i class="bi bi-github"></i></a>
-                    <a href="https://www.instagram.com/" target="_blank" class="btn btn-outline-custom p-2 px-3"><i class="bi bi-instagram"></i></a>
+                <div class="col-lg-5">
+                    <div class="glass-card p-5 h-100">
+                        <h4 class="mb-4">Contact Information</h4>
+                        <div class="d-flex mb-4">
+                            <i class="bi bi-geo-alt accent-text fs-4 me-3"></i>
+                            <p class="text-muted text-desc mb-0">Perumnas Klender, Jaktim</p>
+                        </div>
+                        <div class="d-flex mb-4">
+                            <i class="bi bi-envelope accent-text fs-4 me-3"></i>
+                            <p class="text-muted text-desc mb-0">dendinovianto@gmail.com</p>
+                        </div>
+                        <div class="d-flex mb-4">
+                            <i class="bi bi-telephone accent-text fs-4 me-3"></i>
+                            <p class="text-muted text-desc mb-0">+6281286687844</p>
+                        </div>
+                        <div class="mt-5">
+                            <h5 class="mb-3">Social Connections</h5>
+                            <div class="d-flex gap-3">
+                            <a href="https://www.linkedin.com/" target="_blank" class="btn btn-outline-custom p-2 px-3"><i class="bi bi-linkedin"></i></a>
+                            <a href="https://github.com/" target="_blank" class="btn btn-outline-custom p-2 px-3"><i class="bi bi-github"></i></a>
+                            <a href="https://www.instagram.com/" target="_blank" class="btn btn-outline-custom p-2 px-3"><i class="bi bi-instagram"></i></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                <div class="col-lg-7">
+                    <div class="glass-card p-5">
+                        <form id="contactForm" action="" method="post">
+                            <?php echo csrfField(); ?>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label small text-muted text-desc">Name</label>
+                                    <input type="text" name="name" class="form-control <?php echo hasFlash('error', 'name') ? 'is-invalid' : '' ?>" placeholder="Your Name" value="<?php echo e(getOld('name')) ?>" required autocomplete="off" />
+                                    <div class="invalid-feedback">
+                                        <?php echo e(getError('name')); ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small text-muted text-desc">Email</label>
+                                    <input type="email" name="email" class="form-control <?php echo hasFlash('error', 'email') ? 'is-invalid' : '' ?>" placeholder="Your Email" value="<?php echo e(getOld('email')) ?>" required />
+                                    <div class="invalid-feedback">
+                                        <?php echo e(getError('email')); ?>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small text-muted text-desc">Subject</label>
+                                    <input type="text" name="subject" class="form-control <?php echo hasFlash('error', 'subject') ? 'is-invalid' : '' ?>" placeholder="Subject" value="<?php echo e(getOld('subject')) ?>" required />
+                                    <div class="invalid-feedback">
+                                        <?php echo e(getError('subject')); ?>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small text-muted text-desc">Message</label>
+                                    <textarea class="form-control <?php echo hasFlash('error', 'message') ? 'is-invalid' : '' ?>" name="message" rows="5" placeholder="Your Message"><?php echo e(getOld('message')) ?></textarea>
+                                    <div class="invalid-feedback">
+                                        <?php echo e(getError('message')); ?>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary-custom w-100">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-7">
-                <div class="glass-card p-5">
-                <form id="contactForm" action="" method="post">
-                    <div class="row g-3">
-                    <div class="col-md-6">
-                        <label class="form-label small text-muted text-desc">Name</label>
-                        <input type="text" name="name" class="form-control" placeholder="Your Name" required autocomplete="off" />
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label small text-muted text-desc">Email</label>
-                        <input type="email" name="email" class="form-control" placeholder="Your Email" required />
-                    </div>
-                    <div class="col-12">
-                        <label class="form-label small text-muted text-desc">Subject</label>
-                        <input type="text" name="subject" class="form-control" placeholder="Subject" required />
-                    </div>
-                    <div class="col-12">
-                        <label class="form-label small text-muted text-desc">Message</label>
-                        <textarea class="form-control" name="message" rows="5" placeholder="Your Message"></textarea>
-                    </div>
-                    <div class="col-12">
-                        <button type="submit" class="btn btn-primary-custom w-100">Send Message</button>
-                    </div>
-                    </div>
-                </form>
-                </div>
-            </div>
             </div>
         </div>
     </section>
