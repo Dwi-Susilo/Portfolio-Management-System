@@ -37,7 +37,7 @@
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
 
-                                <form action="/dashboard/experience/delete" method="post" class="d-inline" onsubmit="return confirm('Yakin mau hapus experience \'<?php echo e(addslashes($experience['position'])) ?>\'?');">
+                                <form action="/dashboard/experience/delete" method="post" class="d-inline" onsubmit="return confirm('Yakin mau hapus experience \'<?php echo ejs($experience['position']) ?>\'?');">
                                     <?php echo csrfField(); ?>
                                     <input type="hidden" name="id" value="<?php echo (int) $experience['id'] ?>" />
                                     <button type="submit" class="btn btn-sm btn-outline-danger">

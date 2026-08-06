@@ -6,7 +6,7 @@ function experience()
 {
     setLayout('dashboard');
     return renderView('dashboard/experience/index', [
-        'data' => getAllExperience(),
+        'experiences' => getAllExperience(),
     ]);
 }
 
