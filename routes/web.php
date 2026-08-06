@@ -49,7 +49,7 @@ post('/dashboard/experience/delete', [ROOT_DIR . '/controllers/experienceControl
 
 // Messages Routes
 get('/dashboard/messages', [ROOT_DIR . '/controllers/messagesController.php', 'messages']);
-post('/dashboard/messages', [ROOT_DIR . '/controllers/messagesController.php', 'handleMessages']);
+get('/dashboard/messages/show', [ROOT_DIR . '/controllers/messagesController.php', 'show']);
 post('/dashboard/messages/delete', [ROOT_DIR . '/controllers/messagesController.php', 'delete']);
 
 // Users Routes
