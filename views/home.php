@@ -2,6 +2,7 @@
     /** @var array $portfolios */
     /** @var array $experiences */
     /** @var array $educations */
+    /** @var array $skills */
 ?>
 
 <header>
@@ -97,46 +98,21 @@
         <div class="container">
             <h2 class="section-title text-center">Technical <span class="accent-text">Arsenal</span></h2>
             <div class="row g-4">
-            <div class="col-md-3">
-                <div class="glass-card p-4 text-center h-100">
-                <i class="bi bi-diagram-3 fs-1 accent-text mb-3"></i>
-                <h5>Manajemen Proyek</h5>
-                <div class="mt-3">
-                    <span class="skill-badge">Project Control</span>
-                    <span class="skill-badge">Reporting</span>
-                </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="glass-card p-4 text-center h-100">
-                <i class="bi bi-broadcast fs-1 accent-text mb-3"></i>
-                <h5>Telekomunikasi</h5>
-                <div class="mt-3">
-                    <span class="skill-badge">FTTH/FTTX</span>
-                    <span class="skill-badge">Fiber Optic</span>
-                </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="glass-card p-4 text-center h-100">
-                <i class="bi bi-people fs-1 accent-text mb-3"></i>
-                <h5>Interpersonal</h5>
-                <div class="mt-3">
-                    <span class="skill-badge">Leadership</span>
-                    <span class="skill-badge">Negotiation</span>
-                </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="glass-card p-4 text-center h-100">
-                <i class="bi bi-pc-display fs-1 accent-text mb-3"></i>
-                <h5>Komputasi</h5>
-                <div class="mt-3">
-                    <span class="skill-badge">GIS/Google Earth</span>
-                    <span class="skill-badge">NMS</span>
-                </div>
-                </div>
-            </div>
+                <?php foreach ($skills as $skill): ?>
+                    <div class="col-md-3">
+                        <div class="glass-card p-4 text-center h-100">
+                            <i class="<?php echo e($skill['icon']) ?> fs-1 accent-text mb-3"></i>
+                            <h5><?php echo e($skill['category']) ?></h5>
+                            <div class="mt-3">
+                                <?php $skl = explode(',', trim($skill["skills"])); ?>
+                                <?php foreach ($skl as $sk): ?>
+                                    <span class="skill-badge"><?php echo e($sk) ?></span>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+
             </div>
         </div>
     </section>

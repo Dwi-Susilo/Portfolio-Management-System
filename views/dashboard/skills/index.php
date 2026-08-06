@@ -3,7 +3,7 @@
         <i class="bi bi-briefcase fs-1 text-light mb-3"></i>
         <p class="text-light mb-3">Belum ada skills.</p>
         <div>
-            <a href="/dashboard/portfolio/create" class="btn btn-primary">
+            <a href="/dashboard/skills/create" class="btn btn-primary">
                 <i class="bi bi-plus-circle"></i> Tambah Skills
             </a>
         </div>
@@ -14,38 +14,33 @@
             <table class="table table-dark table-hover align-middle mb-0" style="--bs-table-bg: transparent;">
                 <thead>
                     <tr class="text-secondary border-bottom border-secondary">
-                        <th scope="col" style="width: 100px;">Gambar</th>
-                        <th scope="col" style="width: 200px;">Judul</th>
-                        <th scope="col" style="width: 250px;">Deskripsi</th>
+                        <th scope="col" style="width: 100px;">No</th>
+                        <th scope="col" style="width: 200px;">Kategori</th>
+                        <th scope="col" style="width: 250px;">Skills</th>
                         <th scope="col" style="width: 120px;">Dibuat</th>
                         <th scope="col" class="text-center" style="width: 110px;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody style="font-size: 12px;">
-                    <?php foreach ($skills as $portfolio): ?>
-
-                    <tr class="border-bottom border-secondary border-opacity-25" >
-                        <td>
-                            <img
-                            src="<?php echo BASE_URL ?>/assets/img/upload/portfolio/<?php echo e($portfolio['image']) ?>" alt="<?php echo e($portfolio['title']) ?>" style="width: 120px; height: 60px; object-fit: cover; border-radius: 4px;"/>
-                        </td>
-                        <td><?php echo e($portfolio['title']) ?></td>
-                        <td><?php echo e(mb_strimwidth($portfolio['description'], 0, 80, '...')) ?></td>
-                        <td><?php echo e(date('d M Y', strtotime($portfolio['created_at']))) ?></td>
-                        <td class="">
-                            <a href="/dashboard/portfolio/edit?id=<?php echo encodeId($portfolio['id']) ?>" class="btn btn-sm btn-outline-primary me-2">
-                                <i class="bi bi-pencil-square"></i>
-                            </a>
-
-                            <form action="/dashboard/portfolio/delete" method="post" class="d-inline" onsubmit="return confirm('Yakin mau hapus portfolio \'<?php echo e(addslashes($portfolio['title'])) ?>\'?');">
-                                <?php echo csrfField(); ?>
-                                <input type="hidden" name="id" value="<?php echo (int) $portfolio['id'] ?>" />
-                                <button type="submit" class="btn btn-sm btn-outline-danger">
-                                <i class="bi bi-trash"></i>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
+                    <?php foreach ($skills as $key => $skill): ?>
+                        <tr class="border-bottom border-secondary border-opacity-25">
+                            <td><?php echo $key += 1 ?></td>
+                            <td><?php echo e($skill['category']) ?></td>
+                            <td><?php echo e($skill['skills']) ?></td>
+                            <td><?php echo e(date('d M Y', strtotime($skill['created_at']))) ?></td>
+                            <td>
+                                <a href="/dashboard/skills/edit?id=<?php echo encodeId($skill['id']) ?>" class="btn btn-sm btn-outline-primary me-2">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <form action="/dashboard/skills/delete" method="post" class="d-inline" onsubmit="return confirm('Yakin mau hapus kategori \'<?php echo e(addslashes($skill['category'])) ?>\'?');">
+                                    <?php echo csrfField(); ?>
+                                    <input type="hidden" name="id" value="<?php echo (int) $skill['id'] ?>" />
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
