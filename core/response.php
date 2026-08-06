@@ -76,6 +76,11 @@ function e($value)
     return htmlspecialchars((string) ($value ?? ''), ENT_QUOTES, 'UTF-8');
 }
 
+function eJs($value)
+{
+    return e(addslashes((string) ($value ?? '')));
+}
+
 function csrfToken()
 {
     if (empty($_SESSION['_csrf_token'])) {

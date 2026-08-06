@@ -39,7 +39,7 @@
             </a>
 
             <form action="/dashboard/messages/delete" method="POST"
-                  onsubmit="return confirm('Apakah Anda yakin ingin menghapus pesan dari <?php echo e($msg['name'] ?? $message['name']) ?>?')">
+                  onsubmit="return confirm('Apakah Anda yakin ingin menghapus pesan dari <?php echo ejs($message['name'] ?? $message['name']) ?>?')">
                 <?php echo csrfField(); ?>
                 <input type="hidden" name="id" value="<?php echo (int) $message['id'] ?>" />
                 <button type="submit" class="btn btn-outline-danger">

@@ -27,11 +27,11 @@
                             <td class="text-center"><?php echo $index + 1 ?></td>
                             <td>
                                 <div class="<?php echo $msg['is_read'] == 0 ? 'text-white' : 'text-light' ?>">
-                                    <?php echo htmlspecialchars($msg['name']) ?>
+                                    <?php echo e($msg['name']) ?>
                                 </div>
                                 <small class=" fw-normal d-block"><?php echo e($msg['email']) ?></small>
                             </td>
-                            <td><?php echo htmlspecialchars($msg['subject']) ?></td>
+                            <td><?php echo e($msg['subject']) ?></td>
                             <td class="fw-normal"><?php echo date('d M Y H:i', strtotime($msg['created_at'])) ?></td>
                             <td>
                                 <?php if ($msg['is_read'] == 0): ?>
@@ -48,7 +48,7 @@
                                 </a>
 
                                 <form action="/dashboard/messages/delete" method="POST" class="d-inline"
-                                        onsubmit="return confirm('Apakah Anda yakin ingin menghapus pesan dari <?php echo htmlspecialchars($msg['name']) ?>?')">
+                                        onsubmit="return confirm('Apakah Anda yakin ingin menghapus pesan dari <?php echo ejs($msg['name']) ?>?')">
                                     <?php echo csrfField(); ?>
                                     <input type="hidden" name="id" value="<?php echo $msg['id'] ?>">
                                     <button type="submit" class="btn btn-sm btn-outline-danger" title="Hapus Pesan">
