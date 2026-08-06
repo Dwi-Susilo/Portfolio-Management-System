@@ -96,7 +96,7 @@
 
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h5 class="mb-0"><?php echo getTitle(); ?></h5>
-                <?php if (getTitle() !== "CREATE" && getTitle() !== "EDIT"): ?>
+                <?php if (getTitle() !== "CREATE" && getTitle() !== "EDIT" && getTitle() !== "SHOW" && getPath() !== "/dashboard/messages" && getPath() !== "/dashboard"): ?>
                     <a href="<?php echo getPath(); ?>/create" class="btn btn-primary btn-sm">
                         <i class="bi bi-plus-circle"></i> Tambah <?php echo getTitle(); ?>
                     </a>
