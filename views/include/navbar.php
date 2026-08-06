@@ -27,7 +27,7 @@
                                 <li><a class=" nav-link" href="/profile">Profile</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
-                                    <form action="logout" method="post" class="">
+                                    <form action="/dashboard/logout" method="post" class="">
                                         <?php echo csrfField(); ?>
                                         <button type="submit" name="logout" class=" nav-link text-uppercase" >logout</button>
                                     </form>

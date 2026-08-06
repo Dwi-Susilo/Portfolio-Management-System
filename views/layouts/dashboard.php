@@ -83,7 +83,7 @@
                     </a>
                 </div>
             </div>
-            <form action="logout" method="post">
+            <form action="/dashboard/logout" method="post">
                 <?php echo csrfField(); ?>
                 <button type="submit" name="Logout" class="sidebar-logout"><i class="bi bi-box-arrow-left"></i> Logout</button>
             </form>
