@@ -16,7 +16,7 @@ function show()
     $id    = decodeId($rawId);
 
     if ($id === 0) {
-        redirect(getPath());
+        redirect('/dashboard/messages');
     }
 
     $messageData = getMessageById($id);
@@ -31,7 +31,7 @@ function show()
 
     setLayout('dashboard');
 
-    return renderView(getPath() . '/show', [
+    return renderView('dashboard/messages/show', [
         'message' => $messageData,
     ]);
 }
@@ -39,11 +39,10 @@ function show()
 function delete()
 {
     verifyCsrf();
-
     $id = (int) ($_POST['id'] ?? 0);
 
     if (empty($id)) {
-        redirect(getPath());
+        redirect('/dashboard/messages');
     }
 
     $messageData = getMessageById($id);
@@ -58,5 +57,5 @@ function delete()
         $_SESSION['alert']['danger'] = 'Terjadi kesalahan, pesan gagal dihapus.';
     }
 
-    redirect(getPath());
+    redirect('/dashboard/messages');
 }
