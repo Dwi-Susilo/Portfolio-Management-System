@@ -123,7 +123,7 @@ function handleEdit()
     if (updateEducation($id, $institutionName, $location, $startDate, $endDate)) {
         $_SESSION['alert']['success'] = 'Data Education ' . $institutionName . ' berhasil di ubah.';
     } else {
-        $_SESSION['alert']['danger'] = 'Terjadi kesalahan, Experience ' . $institutionName . ' gagal di ubah.';
+        $_SESSION['alert']['danger'] = 'Terjadi kesalahan, ' . $institutionName . ' gagal di ubah.';
     }
 
     redirect('/dashboard/education');
@@ -147,10 +147,10 @@ function delete()
 
     $institutionName = $education['institution_name'];
 
-    if (deleteExperience($education['id'])) {
-        $_SESSION['alert']['success'] = 'Experience ' . $institutionName . ' berhasil di hapus.';
+    if (deleteEducation($education['id'])) {
+        $_SESSION['alert']['success'] = 'Data Education ' . $institutionName . ' berhasil di hapus.';
     } else {
-        $_SESSION['alert']['danger'] = 'Terjadi kesalahan, Experience ' . $institutionName . ' gagal di hapus.';
+        $_SESSION['alert']['danger'] = 'Terjadi kesalahan, data Education ' . $institutionName . ' gagal di hapus.';
     }
 
     redirect('/dashboard/education');
